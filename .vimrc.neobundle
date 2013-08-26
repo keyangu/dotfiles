@@ -49,6 +49,15 @@ NeoBundle 'h1mesuke/vim-alignta'
 " surround.vim : テキストを括弧で囲む／削除する
 NeoBundle 'tpope/surround.vim'
 
+" smartchr.vim : ==などの前後を整形
+NeoBundle 'smartchr'
+
+
+
+
+
+
+
 " Pydiction : Python用入力補完
 NeoBundle 'rkulla/pydiction'
 
