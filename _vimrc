@@ -1,32 +1,24 @@
 "neobundle.vimで管理しているpluginを読み込む
-source $HOME/dotfiles/.vimrc.neobundle
+source ~/dotfiles/.vimrc.neobundle
 
 "基本設定
-source $HOME/dotfiles/.vimrc.basic
+source ~/dotfiles/.vimrc.basic
 "StatusLine設定
-source $HOME/dotfiles/.vimrc.statusline
+source ~/dotfiles/.vimrc.statusline
 "インデント設定
-source $HOME/dotfiles/.vimrc.indent
+source ~/dotfiles/.vimrc.indent
 "表示関連
-source $HOME/dotfiles/.vimrc.apperance
+source ~/dotfiles/.vimrc.apperance
 "補完関連
-source $HOME/dotfiles/.vimrc.completion
-
-
-"検索時に大文字を含んでいたら大/小を区別
-set smartcase
-
-
-"挿入モードを解除したときにIME(日本語入力)を自動でOFF
-:inoremap <ESC> <ESC>:set iminsert=0 <CR>
-
-"Grep.vimを使うための設定
-"let Grep_Path = 'D:/cygwin/bin/grep.exe'
-"let Fgrep_Path = 'D:/cygwin/bin/grep.exe -F'
-"let Egrep_Path = 'D:/cygwin/bin/grep.exe -E'
-"let Grep_Find_Path = 'D:/cygwin/bin/find.exe'
-"let Grep_Xargs_Path = 'D:/cygwin/bin/xargs.exe'
-"let Grep_Shell_Quote_Char = ""
+source ~/dotfiles/.vimrc.completion
+"Tags関連
+source ~/dotfiles/.vimrc.tags
+"検索関連
+source ~/dotfiles/.vimrc.search
+"編集関連
+source ~/dotfiles/.vimrc.editing
+"プラグインに依存するアレ
+source ~/dotfiles/.vimrc.plugins_setting
 
 " inoファイルを開いた時にC構文で解釈する
 au BufRead,BufNewFile *.ino set filetype=c
