@@ -74,15 +74,70 @@ NeoBundle 'matchit.zip'
 " open-browser.vim : カーソルの下のURLを開くor単語を検索エンジンで検索
 NeoBundle 'tyru/open-browser.vim'
 
-
-
-
+" quickrun.vim : 編集中のファイルを簡単に実行できるプラグイン
+NeoBundle 'thinca/vim-quickrun'
 
 " Pydiction : Python用入力補完
 NeoBundle 'rkulla/pydiction'
 
+" エラーがある場所をhilight
+" NeoBundle 'errormarker.vim'
+
+" GoLang
+" GoのVimプラギンをNeoBundleで管理する - 四角革命前夜
+" http://d.hatena.ne.jp/sasaplus1/20120708/1341720437
+"NeoBundle 'go', {'type' : 'nosync'}
+"NeoBundle 'gocode', {'type' : 'nosync'}
+
+" JavaScript
+" NeoBundle 'JavaScript-syntax'
+
+" python
+NeoBundle 'yuroyoro/vim-python'
+
+" syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
+NeoBundle 'scrooloose/syntastic'
+
+" vimからGit操作する
+NeoBundle 'tpope/vim-fugitive'
+
+" git-vim: Plugin files for calling git functions from inside Vim and Syntax files for git displays
+"NeoBundle 'motemen/git-vim'
+
+" vimdoc 日本語
+NeoBundle 'yuroyoro/vimdoc_ja'
+
+" vimshell : vimのshell
+"NeoBundle 'Shougo/vimshell.git'
+
+" vimproc : vimから非同期実行。vimshellで必要
+"NeoBundle 'Shougo/vimproc', {
+"    \ 'build' : {
+"    \     'windows' : 'make -f make_mingw32.mak',
+"    \     'cygwin' : 'make -f make_cygwin.mak',
+"    \     'mac' : 'make -f make_mac.mak',
+"    \     'unix' : 'make -f make_unix.mak',
+"    \    },
+"    \ }
+
+" DumbBuf.vim : quickbufっぽくbufferを管理。 "<Leader>b<Space>でBufferList
+NeoBundle 'DumbBuf'
+
+" minibufexpl.vim : タブエディタ風にバッファ管理ウィンドウを表示
+"NeoBundle 'minibufexpl.vim'
+
+" NERDTree : ツリー型エクスプローラ
+NeoBundle 'The-NERD-tree'
+
+" エンコード処理
+NeoBundle 'banyan/recognize_charcode.vim'
+
+"===================================
+
+
+
 " Unite {{{{
-  " unite.vim : - すべてを破壊し、すべてを繋げ - vim scriptで実装されたanythingプラグイン
+  " unite.vim : vim scriptで実装されたanythingプラグイン
   NeoBundle 'Shougo/unite.vim'
   NeoBundle 'tsukkee/unite-help'
   NeoBundle 'h1mesuke/unite-outline'
