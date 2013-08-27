@@ -34,7 +34,8 @@ NeoBundle 'scrooloose/nerdcommenter.git'
 NeoBundle 'xmledit'
 
 " Align : 高機能整形・桁揃えプラグイン
-NeoBundle 'Align'
+" キーアサインがかぶってるので要調整
+" NeoBundle 'Align'
 
 " フィルタリングと整形
 " NeoBundle 'godlygeek/tabular'
@@ -73,6 +74,9 @@ NeoBundle 'rkulla/pydiction'
   NeoBundle 'choplin/unite-vim_hacks'
 
 " }}}
+
+" netrw v14xの動きが気にくわないのでv136で取得
+NeoBundle 'netrw.vim', '136'
 
 filetype plugin indent on     " Required!
 
