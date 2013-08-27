@@ -1,5 +1,6 @@
 "-------------------------------------------------------------------------------
 " ステータスライン StatusLine
+" airlineの設定も含む
 "-------------------------------------------------------------------------------
 set laststatus=2 " 常にステータスラインを表示
 
@@ -19,6 +20,33 @@ let g:airline#extensions#branch#symbol = '⎇ '
 "let g:airline#extensions#paste#symbol = 'Þ'
 let g:airline#extensions#paste#symbol = '∥'
 "let g:airline#extensions#whitespace#symbol = 'Ξ'
+
+" airline extension whitespace {{{
+  " enable/disable detection of whitespace errors.
+  " スペースの取り扱いエラー検知ON
+  let g:airline#extensions#whitespace#enabled = 1
+
+  " customize the whitespace symbol.
+  " エラー検知時に表示するシンボル
+  let g:airline#extensions#whitespace#symbol = '!'
+
+  " configure which whitespace checks to enable.
+  " チェックする内容
+  " indent : tabとスペースの混合indent
+  " trailing : 行末のスペース
+  " let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing' ]
+  let g:airline#extensions#whitespace#checks = [ 'trailing' ]
+
+  " configure whether a message should be displayed.
+  " エラー検知時のメッセージ表示ON
+  let g:airline#extensions#whitespace#show_message = 1
+
+  " configure the formatting of the warning messages.
+  " エラー検知時に表示するメッセージ(%sは行数)
+  let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
+  "let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
+"}}}
+
 
 " vim-powerlineでフォントにパッチを当てないなら以下をコメントアウト
 "let g:Powerline_symbols = 'fancy'
