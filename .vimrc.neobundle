@@ -21,9 +21,6 @@ NeoBundle 'Shougo/vimproc'
 
 " Original repos on github
 
-" 補完 neocomplcache.vim : 究極のVim的補完環境
-NeoBundle 'Shougo/neocomplcache'
-
 " ステータスラインをかっこ良くするvim-airline
 NeoBundle 'bling/vim-airline'
 
@@ -53,7 +50,29 @@ NeoBundle 'tpope/surround.vim'
 " smartchr.vim : ==などの前後を整形
 NeoBundle 'smartchr'
 
+" 補完 neocomplcache.vim : 究極のVim的補完環境
+NeoBundle 'Shougo/neocomplcache'
 
+" neocomplcacheのsinpet補完
+NeoBundle 'Shougo/neosnippet.git'
+
+" various langueages snippets
+NeoBundle 'honza/snipmate-snippets'
+
+" vim-smartword : 単語移動がスマートな感じで
+" NeoBundle 'smartword'
+
+" camelcasemotion : CamelCaseやsnake_case単位でのワード移動
+NeoBundle 'camelcasemotion'
+
+" <Leader><Leader>w/fなどで、motion先をhilightする
+NeoBundle 'EasyMotion'
+
+" matchit.vim : 「%」による対応括弧へのカーソル移動機能を拡張
+NeoBundle 'matchit.zip'
+
+" open-browser.vim : カーソルの下のURLを開くor単語を検索エンジンで検索
+NeoBundle 'tyru/open-browser.vim'
 
 
 
