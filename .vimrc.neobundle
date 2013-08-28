@@ -75,7 +75,7 @@ NeoBundle 'matchit.zip'
 NeoBundle 'tyru/open-browser.vim'
 
 " quickrun.vim : 編集中のファイルを簡単に実行できるプラグイン
-NeoBundle 'thinca/vim-quickrun'
+"NeoBundle 'thinca/vim-quickrun'
 
 " Pydiction : Python用入力補完
 NeoBundle 'rkulla/pydiction'
@@ -121,16 +121,16 @@ NeoBundle 'yuroyoro/vimdoc_ja'
 "    \ }
 
 " DumbBuf.vim : quickbufっぽくbufferを管理。 "<Leader>b<Space>でBufferList
-NeoBundle 'DumbBuf'
+"NeoBundle 'DumbBuf'
 
 " minibufexpl.vim : タブエディタ風にバッファ管理ウィンドウを表示
 "NeoBundle 'minibufexpl.vim'
 
 " NERDTree : ツリー型エクスプローラ
-NeoBundle 'The-NERD-tree'
+"NeoBundle 'The-NERD-tree'
 
 " エンコード処理
-NeoBundle 'banyan/recognize_charcode.vim'
+"NeoBundle 'banyan/recognize_charcode.vim'
 
 "===================================
 
