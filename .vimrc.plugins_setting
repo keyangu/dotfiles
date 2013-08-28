@@ -121,3 +121,21 @@ let dumbbuf_updatetime  = 1    " &updatetimeの最小値
 let dumbbuf_wrap_cursor = 0
 let dumbbuf_remove_marked_when_close = 1
 
+"------------------------------------
+" neosnippet.vim
+"------------------------------------
+" スニペットを入力して以下のキーで展開
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+xmap <C-l>     <Plug>(neosnippet_start_unite_snippet_target)
+
+" 複数キーワードあるものはTABで移っていける
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)"
+ \: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)"
+ \: "\<TAB>"
+
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets, ~/dotfiles/snippet'

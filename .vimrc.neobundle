@@ -19,7 +19,9 @@ NeoBundle 'Shougo/vimproc'
 "
 " Note: You don't set neobundle setting in .gvimrc!
 
-" Original repos on github
+"===========================================
+"  user customize plugin
+"===========================================
 
 " ステータスラインをかっこ良くするvim-airline
 NeoBundle 'bling/vim-airline'
@@ -48,7 +50,8 @@ NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'tpope/surround.vim'
 
 " smartchr.vim : ==などの前後を整形
-NeoBundle 'smartchr'
+" 状況に応じてスペースの数は変える必要があるので今は使わない
+"NeoBundle 'smartchr'
 
 " 補完 neocomplcache.vim : 究極のVim的補完環境
 NeoBundle 'Shougo/neocomplcache'
@@ -57,7 +60,10 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet.git'
 
 " various langueages snippets
-NeoBundle 'honza/snipmate-snippets'
+NeoBundle 'honza/vim-snippets'
+
+" コンテキストによって自動的にファイルタイプが変わる
+NeoBundle 'Shougo/context_filetype.vim'
 
 " vim-smartword : 単語移動がスマートな感じで
 " NeoBundle 'smartword'
@@ -93,10 +99,10 @@ NeoBundle 'rkulla/pydiction'
 " NeoBundle 'JavaScript-syntax'
 
 " python
-NeoBundle 'yuroyoro/vim-python'
+"NeoBundle 'yuroyoro/vim-python'
 
 " syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
-NeoBundle 'scrooloose/syntastic'
+"NeoBundle 'scrooloose/syntastic'
 
 " vimからGit操作する
 NeoBundle 'tpope/vim-fugitive'

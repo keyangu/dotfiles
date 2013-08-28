@@ -42,7 +42,7 @@ let g:airline#extensions#paste#symbol = '∥'
   let g:airline#extensions#whitespace#show_message = 1
 
   " configure the formatting of the warning messages.
-  " エラー検知時に表示するメッセージ(%sは行数)
+  " エラー検知時に表示するメッセージ(%sは問題の起きている行)
   let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
   "let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
 "}}}

@@ -13,8 +13,8 @@ nmap ye ;let @"=expand("<cword>")<CR>
 " Visualモードでのpで選択範囲をレジスタの内容に置き換える
 vnoremap p <Esc>;let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
-" Tabキーを空白に変換
-" set expandtab
+" 明示的にTabキーを使用
+"set noexpandtab
 
 " コンマの後に自動的にスペースを挿入
 inoremap , ,<Space>
@@ -55,6 +55,7 @@ inoremap <silent> <C-y>0 <Esc>ly$<Insert>
 
 "
 " 括弧を自動補完
+"もう少しインテリジェントじゃないと厳しいかもね
 "inoremap { {}<LEFT>
 "inoremap [ []<LEFT>
 "inoremap ( ()<LEFT>
