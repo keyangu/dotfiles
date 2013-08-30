@@ -140,8 +140,6 @@ NeoBundle 'Shougo/vimshell.git'
 
 "===================================
 
-
-
 " Unite {{{{
   " unite.vim : vim scriptで実装されたanythingプラグイン
   NeoBundle 'Shougo/unite.vim'
@@ -159,6 +157,9 @@ NeoBundle 'Shougo/vimshell.git'
 NeoBundle 'netrw.vim', '136'
 
 NeoBundle 'taglist.vim'
+
+" VimからSubversion操作したいな
+NeoBundle 'vcscommand.vim'
 
 filetype plugin indent on     " Required!
 
