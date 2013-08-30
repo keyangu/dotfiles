@@ -47,7 +47,7 @@ NeoBundle 'h1mesuke/vim-alignta'
 " NeoBundle 'YankRing.vim'
 
 " surround.vim : テキストを括弧で囲む／削除する
-NeoBundle 'tpope/surround.vim'
+" NeoBundle 'tpope/surround.vim'
 
 " smartchr.vim : ==などの前後を整形
 " 状況に応じてスペースの数は変える必要があるので今は使わない
