@@ -114,7 +114,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'yuroyoro/vimdoc_ja'
 
 " vimshell : vimのshell
-"NeoBundle 'Shougo/vimshell.git'
+NeoBundle 'Shougo/vimshell.git'
 
 " vimproc : vimから非同期実行。vimshellで必要
 "NeoBundle 'Shougo/vimproc', {
@@ -140,8 +140,6 @@ NeoBundle 'yuroyoro/vimdoc_ja'
 
 "===================================
 
-
-
 " Unite {{{{
   " unite.vim : vim scriptで実装されたanythingプラグイン
   NeoBundle 'Shougo/unite.vim'
@@ -157,6 +155,11 @@ NeoBundle 'yuroyoro/vimdoc_ja'
 
 " netrw v14xの動きが気にくわないのでv136で取得
 NeoBundle 'netrw.vim', '136'
+
+NeoBundle 'taglist.vim'
+
+" VimからSubversion操作したいな
+NeoBundle 'vcscommand.vim'
 
 filetype plugin indent on     " Required!
 
