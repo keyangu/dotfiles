@@ -1,0 +1,17 @@
+*vimemo.jax* Vimの個人的メモ
+
+==========================================================================
+|vim_svn|
+|help|
+==========================================================================
+
+*vim-svn* ■vimからsubversion制御
+→ vcscommandを入れてみた
+→ <Leader>cc でコミットメッセージ入力、もう一度<Leader>cc でコミット
+→ :VCSVimDiff  作業コピーと前回コミット時の差分を表示
+
+*help* ■時間のある時はhelpを読みましょう
+:help options, quickref, tips
+
+
+vim:tw=78:ts=4:ft=help:fileencoding=utf-8
