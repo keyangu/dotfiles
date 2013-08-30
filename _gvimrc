@@ -1,5 +1,7 @@
-set guifont=Inconsolata:h12:w6:cSHIFTJIS
+"set guifont=Inconsolata:h12:w6:cSHIFTJIS
 
 source $VIMRUNTIME/delmenu.vim
 set langmenu=ja_jp.utf-8
 source $VIMRUNTIME/menu.vim
+
+colorscheme slate
