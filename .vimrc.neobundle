@@ -46,12 +46,55 @@ NeoBundle 'h1mesuke/vim-alignta'
 " C-p,  C-nが被ってるので使う場合はなんとかすること
 " NeoBundle 'YankRing.vim'
 
+" undo履歴を追える (need python support)
+NeoBundle 'Gundo'
+
 " surround.vim : テキストを括弧で囲む／削除する
 " NeoBundle 'tpope/surround.vim'
 
 " smartchr.vim : ==などの前後を整形
 " 状況に応じてスペースの数は変える必要があるので今は使わない
 "NeoBundle 'smartchr'
+"
+" vim-operator-user : 簡単にoperatorを定義できるようにする
+NeoBundle 'operator-user'
+
+" operator-camelize : camel-caseへの変換
+NeoBundle 'operator-camelize'
+
+" operator-replace : yankしたものでreplaceする
+NeoBundle 'operator-replace'
+
+" textobj-user : 簡単にVimエディタのテキストオブジェクトをつくれる
+NeoBundle 'textobj-user'
+
+" vim-textobj-syntax : syntax hilightされたものをtext-objectに
+NeoBundle 'kana/vim-textobj-syntax.git'
+
+" vim-textobj-plugins : いろんなものをtext-objectにする
+NeoBundle 'thinca/vim-textobj-plugins.git'
+
+" vim-textobj-lastpat : 最後に検索されたパターンをtext-objectに
+NeoBundle 'kana/vim-textobj-lastpat.git'
+
+" vim-textobj-indent : インデントされたものをtext-objectに
+NeoBundle 'kana/vim-textobj-indent.git'
+
+" vim-textobj-function : 関数の中身をtext-objectに
+NeoBundle 'kana/vim-textobj-function.git'
+
+" vim-textobj-fold : 折りたたまれたアレをtext-objectに
+" NeoBundle 'kana/vim-textobj-fold.git'
+NeoBundle 'textobj-rubyblock'
+
+" vim-textobj-entire : buffer全体をtext-objectに
+NeoBundle 'textobj-entire'
+
+" 「foo」 or 【bar】などをtext-objectに
+NeoBundle 'textobj-jabraces'
+
+" <C-a>でtrue/false切替。他色々
+NeoBundle 'taku-o/vim-toggle'
 
 " 補完 neocomplcache.vim : 究極のVim的補完環境
 NeoBundle 'Shougo/neocomplcache'
@@ -160,6 +203,12 @@ NeoBundle 'taglist.vim'
 
 " VimからSubversion操作したいな
 NeoBundle 'vcscommand.vim'
+
+" ディレクトリを指定して、ディレクトリ内の差分を表示する
+NeoBundle 'DirDiff.vim'
+
+" ビジュアルモードで選択したテキストで*検索する
+NeoBundle 'thinca/vim-visualsstar'
 
 filetype plugin indent on     " Required!
 

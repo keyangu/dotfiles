@@ -7,19 +7,33 @@ set laststatus=2 " 常にステータスラインを表示
 "カーソルが何行目の何列目に置かれているかを表示する
 set ruler
 
+" vim-airlineでpowerlineパッチを当てたフォントを使う
+" フォントパッチを当てない場合はここを0にする
+let g:airline_powerline_fonts=1
+
 " Unicode Symbolで更に美しく
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_linecolumn_prefix = '␊ '
-let g:airline_linecolumn_prefix = '␤ '
-let g:airline_linecolumn_prefix = '¶ '
-let g:airline#extensions#branch#symbol = '⎇ '
+"let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '«'
+"let g:airline_right_sep = '◀'
+"let g:airline_linecolumn_prefix = '␊ '
+"let g:airline_linecolumn_prefix = '␤ '
+"let g:airline_linecolumn_prefix = '¶ '
+"let g:airline#extensions#branch#symbol = '⎇ '
 "let g:airline#extensions#paste#symbol = 'ρ'
 "let g:airline#extensions#paste#symbol = 'Þ'
-let g:airline#extensions#paste#symbol = '∥'
+"let g:airline#extensions#paste#symbol = '∥'
 "let g:airline#extensions#whitespace#symbol = 'Ξ'
+
+let g:airline_symbols = {}
+
+let g:airline_left_sep = '⮀'
+let g:airline_left_alt_sep = '⮁'
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = '⮃'
+let g:airline_symbols.branch = '⭠'
+let g:airline_symbols.readonly = '⭤'
+let g:airline_symbols.linenr = '⭡'
 
 " airline extension whitespace {{{
   " enable/disable detection of whitespace errors.
@@ -46,7 +60,6 @@ let g:airline#extensions#paste#symbol = '∥'
   let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
   "let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
 "}}}
-
 
 " vim-powerlineでフォントにパッチを当てないなら以下をコメントアウト
 "let g:Powerline_symbols = 'fancy'
