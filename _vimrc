@@ -25,6 +25,8 @@ source ~/dotfiles/.vimrc.editing
 source ~/dotfiles/.vimrc.encoding
 "その他
 source ~/dotfiles/.vimrc.misc
+" トライアル中のあれこれ
+source ~/dotfiles/.vimrc.trial
 "プラグインに依存する設定
 "一部のプラグインは専用の.vimrcを用意してそちらで設定
 source ~/dotfiles/.vimrc.plugins_setting

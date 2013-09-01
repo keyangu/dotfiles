@@ -30,6 +30,8 @@ imap <C-p>  <ESC>"*pa
 " Ev/Rvでvimrcの編集と反映
 command! Ev edit $MYVIMRC
 command! Rv source $MYVIMRC
+" 試してみたいことがあった時の.vimrc.trialを開く
+command! Tv edit ~/dotfiles/.vimrc.trial
 " EDFvで~/dotfilesの編集
 command! EDFv edit ~/dotfiles
 " MvでVim用メモの編集

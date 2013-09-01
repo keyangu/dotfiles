@@ -44,13 +44,13 @@ NeoBundle 'h1mesuke/vim-alignta'
 
 " YankRing.vim : ヤンクの履歴を管理し、順々に参照、出力できるようにする
 " C-p,  C-nが被ってるので使う場合はなんとかすること
-" NeoBundle 'YankRing.vim'
+NeoBundle 'YankRing.vim'
 
 " undo履歴を追える (need python support)
 NeoBundle 'Gundo'
 
 " surround.vim : テキストを括弧で囲む／削除する
-" NeoBundle 'tpope/surround.vim'
+NeoBundle 'tpope/vim-surround'
 
 " smartchr.vim : ==などの前後を整形
 " 状況に応じてスペースの数は変える必要があるので今は使わない
@@ -216,6 +216,12 @@ NeoBundle 'DirDiff.vim'
 
 " ビジュアルモードで選択したテキストで*検索する
 NeoBundle 'thinca/vim-visualstar'
+
+" インデント量の違いをハイライト表示する
+NeoBundle 'nathanaelkane/vim-indent-guides'
+
+" Vim内で計算処理を行う(+Python)
+NeoBundle 'gregsexton/VimCalc'
 
 filetype plugin indent on     " Required!
 
