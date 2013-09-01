@@ -1,0 +1,72 @@
+■ Rictyのインストール
+http://save.sys.t.u-tokyo.ac.jp/~yusa/fonts/ricty.html
+
+・Rictyの生成スクリプトを取得する
+$ git clone https://github.com/yascentur/Ricty
+$ cd Ricty
+$ git checkout 3.2.2
+
+・FontForgeをインストールする
+ - ソフトウェアセンターから
+
+・Inconsolataをインストールする
+http://levien.com/type/myfonts/inconsolata.html
+OpenType FileをDL
+
+・M+とIPAの合成フォントをインストールする
+・migu-1m-YYYYMMDD.zipをダウンロードする
+http://sourceforge.jp/projects/mix-mplus-ipa/releases/
+
+・Ubuntuのフォントインストールは
+~/fonts にコピーするか
+/usr/local/share/fonts/ にコピーする(sudo)
+$ fc-cache -fv
+で更新
+
+・Rictyの生成スクリプトを実行
+% sh ricty_generator.sh auto
+もしくは、
+% sh ricty_generator.sh Inconsolata.otf migu-1m-regular.ttf migu-1m-bold.ttf
+生成には 2–5 分程の時間がかかります。
+
+% cp -f Ricty*.ttf ~/.fonts/
+% fc-cache -vf
+
+■ powerlineのスクリプトを使ってフォントにパッチを当てる
+https://github.com/Lokaltog/vim-powerline
+vim-airlineを使っているので、普通にGitで取得すればOK
+
+・python-fontforgeをインストールする
+
+・powerline/fontpacher/* と Ricty*.ttf を適当なフォルダにコピー
+$ mkdir font && cd font
+$ cp powerline/fontpacher/* .
+$ cp ~/.fonts/Ricty*.ttf .
+
+・パッチを当てる
+$ python fontpacher Ricty-Regular.ttf
+$ python fontpacher Ricty-Bold.ttf
+
+・できあがったフォントをインストールする
+$ cp Ricty-*-Powerline.ttf
+
+・.gvimrcに使用するよう設定する
+set guifont=Ricty\ for\ Powerline\ 10
+set guifontwide=Ricty:h10
+
+・vim-airlineからパッチを当てたフォントを使うように設定する
+
+---
+" vim-airlineでpowerlineパッチを当てたフォントを使う
+let g:airline_powerline_fonts=1
+
+let g:airline_symbols = {}
+
+let g:airline_left_sep = '⮀'
+let g:airline_left_alt_sep = '⮁'
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = '⮃'
+let g:airline_symbols.branch = '⭠'
+let g:airline_symbols.readonly = '⭤'
+let g:airline_symbols.linenr = '⭡'
+---

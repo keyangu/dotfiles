@@ -15,20 +15,9 @@ source ~/dotfiles/.vimrc.completion
 source ~/dotfiles/.vimrc.tags
 "検索関連
 source ~/dotfiles/.vimrc.search
-"移動関連
-source ~/dotfiles/.vimrc.moving
-"Color関連
-source ~/dotfiles/.vimrc.colors
 "編集関連
 source ~/dotfiles/.vimrc.editing
-"エンコーディング関連
-source ~/dotfiles/.vimrc.encoding
-"その他
-source ~/dotfiles/.vimrc.misc
-" トライアル中のあれこれ
-source ~/dotfiles/.vimrc.trial
-"プラグインに依存する設定
-"一部のプラグインは専用の.vimrcを用意してそちらで設定
+"プラグインに依存するアレ
 source ~/dotfiles/.vimrc.plugins_setting
 
 " inoファイルを開いた時にC構文で解釈する
@@ -56,10 +45,18 @@ let g:proj_flags = "imstv"
 "  silent execute('!C:\Progra~1\TortoiseSVN\bin\TortoiseProc.exe /command:blame /path:"' . filename . '" /line:' . linenum . ' /closeonend:0')
 "endfunc
 
+"開くファイルの改行コードを自動認識する
+set fileformats=unix,dos,mac
+"開くファイルの文字コードを自動認識する
+set encoding=utf-8
+set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
+
 "Gtags(global)を使用するためのショートカット
 map <C-g> :Gtags
 map <C-i> :Gtags -f %<CR>
 map <C-j> :GtagsCursor<CR>
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
+
+
 

@@ -104,3 +104,6 @@ function! s:toggle_qf_window()
 endfunction
 nnoremap <silent> cw :call <SID>toggle_qf_window()<CR>
 
+" コマンドラインで <C-X>dt と押すとYYYYMMDDと展開する
+cnoremap <expr> <C-X>dt strftime('%Y%m%d')
+

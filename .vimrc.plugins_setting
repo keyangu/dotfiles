@@ -1,6 +1,16 @@
 "-------------------------------------------------------------------------------
 " プラグインごとの設定 Plugins
 "-------------------------------------------------------------------------------
+
+"------------------------------------
+" YankRing.vim
+"------------------------------------
+let g:yankring_history_dir = expand('$HOME')
+let g:yankring_history_file = '.yankring_history'
+let g:yankring_max_history = 100          " 履歴の件数
+" F7でYRShowを実行する
+nnoremap <silent> <F7> YRShow<CR>
+
 "------------------------------------
 " taglist.Vim
 "------------------------------------
@@ -140,3 +150,21 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
  \: "\<TAB>"
 
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets, ~/dotfiles/snippet'
+
+"------------------------------------
+" vim-indent-guides
+"------------------------------------
+nnoremap <silent> <Space>id :<C-u>IndentGuidesToggle<Enter>
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_start_level = 4
+let g:indent_guides_guide_size = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+if 'dark' == &background
+    hi IndentGuidesOdd  ctermbg=black
+    hi IndentGuidesEven ctermbg=darkgrey
+else
+    hi IndentGuidesOdd  ctermbg=white
+    hi IndentGuidesEven ctermbg=lightgrey
+endif
+
