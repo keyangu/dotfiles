@@ -2,24 +2,26 @@
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
+
 # 同じコマンドは重複しない
 setopt hist_ignore_dups
 # 他のターミナルと履歴を共有する
 # もしかしたら邪魔かもしれないなぁ…
 # setopt share_history
 
-unsetopt beep
-bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/yanagi/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+# Terminal Colorの設定
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # Viライクキーバインド設定
 bindkey -v
+
+autoload -Uz compinit
+compinit
+
+export LANG=ja_JP.UTF-8
 
 # プロンプト
 case ${UID} in

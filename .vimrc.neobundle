@@ -208,7 +208,7 @@ NeoBundle 'vcscommand.vim'
 NeoBundle 'DirDiff.vim'
 
 " ビジュアルモードで選択したテキストで*検索する
-NeoBundle 'thinca/vim-visualsstar'
+NeoBundle 'thinca/vim-visualstar'
 
 filetype plugin indent on     " Required!
 
