@@ -89,8 +89,9 @@ cnoremap UO Unite outline<Enter>
 " コメントの間にスペースを空ける
 let NERDSpaceDelims = 1
 "<Leader>xでコメントをトグル(NERD_commenter.vim)
-map <Leader>x, c<space>
-""未対応ファイルタイプのエラーメッセージを表示しない
+" TODO うまく動いてないかも
+"map <Leader>x, c<space>
+"未対応ファイルタイプのエラーメッセージを表示しない
 let NERDShutUp=1
 
 "------------------------------------
@@ -103,8 +104,8 @@ let g:EasyMotion_leader_key="'"
 " 1 ストローク選択を優先する
 let g:EasyMotion_grouping=1
 " カラー設定変更
-hi EasyMotionTarget ctermbg=none ctermfg=red
-hi EasyMotionShade  ctermbg=none ctermfg=blue
+hi EasyMotionTarget ctermbg=red ctermfg=white
+hi EasyMotionShade  ctermbg=blue ctermfg=white
 
 "------------------------------------
 " DumbBuf.vim
