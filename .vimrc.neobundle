@@ -182,6 +182,13 @@ NeoBundle 'Shougo/vimshell.git'
 "NeoBundle 'banyan/recognize_charcode.vim'
 
 "===================================
+" ColorSchema{{{{
+  " color schema 256
+  NeoBundle 'desert256.vim'
+  NeoBundle 'mrkn256.vim'
+  NeoBundle 'tomasr/molokai'
+  NeoBundle 'yuroyoro/yuroyoro256.vim'
+" }}}
 
 " Unite {{{{
   " unite.vim : vim scriptで実装されたanythingプラグイン
