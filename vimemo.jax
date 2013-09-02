@@ -64,6 +64,20 @@ Linux
  $HOME/vimfiles/after
 ※すべてのパスを読み込んで上書きしていく
 
+if has('win32') || has('win64')
+endif
+とかすればWindows限定の動作にできる
+
 ==========================================================================
 
+errormarker.vim, syntastic, quickrunあたりをごにょごにょ
+
+・Vistaでとっても遅くなるような気がする
+・チェックするftを減らせば軽くなるかな？
+・syntastic + win だと保存した時にdos窓がちらっと開いてフォーカス持って
+　かれるのでプチうざい
+・watchdogs.vim + quickrun + vimproc だと非同期でできるかも
+http://d.hatena.ne.jp/osyo-manga/20120924/1348473304
+
+==========================================================================
 vim: tw=78:ts=4:ft=help:fileencoding=utf-8

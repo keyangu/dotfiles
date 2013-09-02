@@ -13,7 +13,15 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Recommended to install
 " After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
-NeoBundle 'Shougo/vimproc'
+" vimproc : vimから非同期実行。vimshellで必要、neobundleでも推奨。
+NeoBundle 'Shougo/vimproc', {
+    \ 'build' : {
+    \     'windows' : 'make -f make_mingw32.mak',
+    \     'cygwin' : 'make -f make_cygwin.mak',
+    \     'mac' : 'make -f make_mac.mak',
+    \     'unix' : 'make -f make_unix.mak',
+    \    },
+    \ }
 
 " My Bundles here:
 "
@@ -26,7 +34,7 @@ NeoBundle 'Shougo/vimproc'
 " ステータスラインをかっこ良くするvim-airline
 NeoBundle 'bling/vim-airline'
 
-" コメント処理補助 (<Leader>c<space>でコメントをトグル)
+" コメント処理補助 (<Leader>c<space>, <Leader>csでコメントをトグル)
 NeoBundle 'scrooloose/nerdcommenter.git'
 
 " XMLとかHTMLとかの編集機能を強化する
@@ -123,14 +131,8 @@ NeoBundle 'matchit.zip'
 " open-browser.vim : カーソルの下のURLを開くor単語を検索エンジンで検索
 NeoBundle 'tyru/open-browser.vim'
 
-" quickrun.vim : 編集中のファイルを簡単に実行できるプラグイン
-"NeoBundle 'thinca/vim-quickrun'
-
 " Pydiction : Python用入力補完
 NeoBundle 'rkulla/pydiction'
-
-" エラーがある場所をhilight
-" NeoBundle 'errormarker.vim'
 
 " GoLang
 " GoのVimプラギンをNeoBundleで管理する - 四角革命前夜
@@ -144,8 +146,19 @@ NeoBundle 'rkulla/pydiction'
 " python
 "NeoBundle 'yuroyoro/vim-python'
 
-" syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
-"NeoBundle 'scrooloose/syntastic'
+
+" syntax, error {{{
+"		 syntaxとかエラーとかを表示してくれるあたり
+"		PCが非力なせいでとても遅くなる環境があるので、ひとまず見送り中
+		" quickrun.vim : 編集中のファイルを簡単に実行できるプラグイン
+		"NeoBundle 'thinca/vim-quickrun'
+
+		" syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
+		"NeoBundle 'scrooloose/syntastic'
+
+		" エラーがある場所をhilight
+		" NeoBundle 'errormarker.vim'
+"}}}
 
 " vimからGit操作する
 NeoBundle 'tpope/vim-fugitive'
@@ -159,15 +172,6 @@ NeoBundle 'yuroyoro/vimdoc_ja'
 " vimshell : vimのshell
 NeoBundle 'Shougo/vimshell.git'
 
-" vimproc : vimから非同期実行。vimshellで必要
-"NeoBundle 'Shougo/vimproc', {
-"    \ 'build' : {
-"    \     'windows' : 'make -f make_mingw32.mak',
-"    \     'cygwin' : 'make -f make_cygwin.mak',
-"    \     'mac' : 'make -f make_mac.mak',
-"    \     'unix' : 'make -f make_unix.mak',
-"    \    },
-"    \ }
 
 " DumbBuf.vim : quickbufっぽくbufferを管理。 "<Leader>b<Space>でBufferList
 "NeoBundle 'DumbBuf'
@@ -218,7 +222,8 @@ NeoBundle 'DirDiff.vim'
 NeoBundle 'thinca/vim-visualstar'
 
 " インデント量の違いをハイライト表示する
-NeoBundle 'nathanaelkane/vim-indent-guides'
+" テーマとハイライト色を吟味しないと逆に見づらい…
+"NeoBundle 'nathanaelkane/vim-indent-guides'
 
 " Vim内で計算処理を行う(+Python)
 NeoBundle 'gregsexton/VimCalc'
