@@ -13,11 +13,9 @@ nmap ye ;let @"=expand("<cword>")<CR>
 " Visualモードでのpで選択範囲をレジスタの内容に置き換える
 vnoremap p <Esc>;let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
-" 明示的にTabキーを使用
-"set noexpandtab
-
 " コンマの後に自動的にスペースを挿入
-inoremap , ,<Space>
+" inoremap , ,<Space>
+
 " XMLの閉タグを自動挿入
 augroup MyXML
   autocmd!
@@ -53,7 +51,6 @@ inoremap <silent> <C-y>e <Esc>ly0<Insert>
 " カーソルから行末までヤンク(インサートモード)
 inoremap <silent> <C-y>0 <Esc>ly$<Insert>
 
-"
 " 括弧を自動補完
 "もう少しインテリジェントじゃないと厳しいかもね
 "inoremap { {}<LEFT>
@@ -76,6 +73,9 @@ inoremap <silent> <C-y>0 <Esc>ly$<Insert>
 inoremap <expr> ,df strftime('%Y/%m/%d %H:%M:%S')
 inoremap <expr> ,dd strftime('%Y/%m/%d')
 inoremap <expr> ,dt strftime('%H:%M:%S')
+
+" コマンドラインで <C-X>dt と押すとYYYYMMDDと展開する
+cnoremap <expr> <C-X>dt strftime('%Y%m%d')
 
 " foldは各FiltTypeにお任せる
 " set foldmethod=syntax
@@ -104,6 +104,4 @@ function! s:toggle_qf_window()
 endfunction
 nnoremap <silent> cw :call <SID>toggle_qf_window()<CR>
 
-" コマンドラインで <C-X>dt と押すとYYYYMMDDと展開する
-cnoremap <expr> <C-X>dt strftime('%Y%m%d')
 
