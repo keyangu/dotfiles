@@ -1,4 +1,4 @@
-if has('win32) || has('win64)
+if has('win32') || has('win64')
   set guifont=Inconsolata:h10.5
 else
   set guifont=Ricty\ for\ Powerline\ 10
