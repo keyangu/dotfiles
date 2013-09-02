@@ -33,8 +33,37 @@ Linux用のvimrcは .vimrc, .gvimrc
 矩形ビジュアルモードで選択後、Iを押して挿入モードになると、
 選択範囲のすべてに挿入できる
 
+==========================================================================
 
+WindowsとLinuxでvimrcを共有する試み
+http://teppeis.hatenablog.com/entry/20080705/1215262928
 
+・ユーザvimrcの検索順
+Windows
+ $HOME/_vimrc
+ $HOME/.vimrc
+ $VIM/_vimrc
+ $VIM/.vimrc
+Linux
+ $HOME/.vimrc
+ $HOME/_vimrc
+※ファイルが見つかった時点で、以降のファイルは読み込まれなくなる
 
+・runtimeディレクトリ
+Windows
+ $HOME/vimfiles
+ $VIM/vimfiles
+ $VIMRUNTIME      ($VIM/runtimeなど)
+ $VIM/vimfiles/after
+ $HOME/vimfiles/after
+Linux
+ $HOME/.vim
+ $VIM/vimfiles
+ $VIMRUNTIME      ($VIM/vim71など)
+ $VIM/vimfiles/after
+ $HOME/vimfiles/after
+※すべてのパスを読み込んで上書きしていく
+
+==========================================================================
 
 vim: tw=78:ts=4:ft=help:fileencoding=utf-8
