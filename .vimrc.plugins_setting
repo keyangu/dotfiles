@@ -203,3 +203,26 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 "------------------------------------
 let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 
+"------------------------------------
+" Syntastic
+"------------------------------------
+" Syntasticを自動で実行しないようにする
+let g:syntastic_mode_map = { 'mode' : 'passive',
+			\ 'active_filetypes' : [],
+			\ 'passive_filetypes' : []
+			\}
+" エラー行をsignで表示する
+let g:syntastic_enable_signs = 1
+" 可能ならhighligt表示する
+let g:syntastic_enable_highlighting = 1
+" 自動的に開いたり閉じたりする
+let g:syntastic_auto_loc_list=1
+
+" C言語はgccで構文解析
+"let g:syntastic_c_checkers = ['gcc']
+
+" :Synで:SyntasticCheckコマンドを実行
+command! Syn SyntasticCheck
+" :Syntで:SyntasticToggleModeコマンドを実行
+command! Synt SyntasticToggleMode
+

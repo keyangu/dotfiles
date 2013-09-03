@@ -157,7 +157,7 @@ NeoBundle 'rkulla/pydiction'
 NeoBundle 'thinca/vim-quickrun'
 
 		" syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
-		"NeoBundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/syntastic'
 
 		" エラーがある場所をhilight
 		" NeoBundle 'errormarker.vim'
