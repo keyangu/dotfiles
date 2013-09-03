@@ -106,6 +106,9 @@ NeoBundle 'taku-o/vim-toggle'
 
 " 補完 neocomplcache.vim : 究極のVim的補完環境
 NeoBundle 'Shougo/neocomplcache'
+" Vim7.3.885以上、+lua でビルドした Vim なら neocomplete のほうがいいらしいよ
+" LinuxのVimはソースから自分でビルドしたほうが新しい物を使えるよ
+"NeoBundle 'Shougo/neocomplete'
 
 " neocomplcacheのsinpet補完
 NeoBundle 'Shougo/neosnippet.git'
@@ -150,8 +153,8 @@ NeoBundle 'rkulla/pydiction'
 " syntax, error {{{
 "		 syntaxとかエラーとかを表示してくれるあたり
 "		PCが非力なせいでとても遅くなる環境があるので、ひとまず見送り中
-		" quickrun.vim : 編集中のファイルを簡単に実行できるプラグイン
-		"NeoBundle 'thinca/vim-quickrun'
+" quickrun.vim : 編集中のファイルを簡単に実行できるプラグイン
+NeoBundle 'thinca/vim-quickrun'
 
 		" syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
 		"NeoBundle 'scrooloose/syntastic'

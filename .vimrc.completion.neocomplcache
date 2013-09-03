@@ -1,3 +1,6 @@
+"-------------------------------------------------------------------------------
+" 補完 neocomplcache
+"-------------------------------------------------------------------------------
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -6,20 +9,21 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
+" neocomplecacheを自動的にロックするバッファ名のパターン
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+" シンタックスをキャッシュするときの最小文字長を3に
+let g:neocomplcache_min_syntax_length = 3
+" -入力による候補番号の表示
+let g:neocomplcache_enable_quick_match = 1
+"ポップアップメニューで表示される候補の数。初期値は100
+let g:neocomplcache_max_list = 20
 
-" Enable heavy features.
-" Use camel case completion.
-"let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-"let g:neocomplcache_enable_underbar_completion = 1
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-	\ 'default' : '',
-	\ 'vimshell' : $HOME.'/.vimshell_hist',
-	\ 'scheme' : $HOME.'/.gosh_completions'
-		\ }
+" {{{ XXX 重いかもしれない設定
+		" camle caseを有効化。大文字を区切りとしたワイルドカードのように振る舞う
+		let g:neocomplcache_enable_camel_case_completion = 1
+		" _(アンダーバー)区切りの補完を有効化
+		let g:neocomplcache_enable_underbar_completion = 1
+" }}}
 
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
@@ -27,8 +31,27 @@ if !exists('g:neocomplcache_keyword_patterns')
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+	\ 'default' : '',
+	\ 'vimshell' : $HOME.'/.vimshell_hist',
+	\ 'scheme' : $HOME.'/.gosh_completions',
+	\ 'c' : $HOME.'/.vim/dict/c.dict',
+	\ 'javascript' : $HOME.'/.vim/dict/javascript.dict',
+	\ 'vm' : $HOME.'/.vim/dict/vim.dict'
+		\ }
+
+"インクルードパスの指定
+if !has('win32') && !has('win64')
+	let g:neocomplcache_include_paths = {
+		\ 'c'    : '.,/usr/include'
+		\ }
+endif
+
 " Plugin key-mappings.
+" <C-g>補完をキャンセルする
 inoremap <expr><C-g>     neocomplcache#undo_completion()
+" <C-l>補完候補の中で共通する部分までを補完する(shell like)
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
 " Recommended key-mappings.
@@ -44,7 +67,9 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+" <C-y>で選択中の候補を確定する
 inoremap <expr><C-y>  neocomplcache#close_popup()
+" <C-e>で補完をキャンセルしてポップアップをキャンセルする
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
@@ -59,7 +84,7 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 " Or set this.
 "let g:neocomplcache_enable_insert_char_pre = 1
 
-" AutoComplPop like behavior.
+" AutoComplPop みたいに展開時に1つめを自動選択する
 "let g:neocomplcache_enable_auto_select = 1
 
 " Shell like behavior(not recommended).
@@ -67,6 +92,9 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 "let g:neocomplcache_enable_auto_select = 1
 "let g:neocomplcache_disable_auto_complete = 1
 "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+
+
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
