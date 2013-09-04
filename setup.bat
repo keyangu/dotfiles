@@ -8,8 +8,9 @@ rem このバッチが存在するフォルダをカレントに
 pushd %0\..
 cls
 
-copy .\_vimrc %HOME%
-copy .\_gvimrc %HOME%
+copy .\.vimrc %HOME%
+copy .\.gvimrc %HOME%
+copy .\.vim %HOME%
 
 pause
 exit
