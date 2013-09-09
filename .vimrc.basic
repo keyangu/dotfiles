@@ -43,5 +43,10 @@ set helpfile=$VIMRUNTIME/doc/help.txt
 filetype plugin on
 
 " GoLangのpluginをruntime pathへ
+filetype off
+filetype plugin indent off
 set rtp+=$GOROOT/misc/vim
 exe "set rtp+=".globpath($GOPATH,  "src/github.com/nsf/gocode/vim")
+filetype plugin indent on
+syntax on
+

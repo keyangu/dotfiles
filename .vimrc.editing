@@ -104,4 +104,9 @@ function! s:toggle_qf_window()
 endfunction
 nnoremap <silent> cw :call <SID>toggle_qf_window()<CR>
 
-
+" backspace設定
+" オートインデントのタブや空白を削除、改行を削除、
+" 挿入区間の始めで削除
+" (insertを抜けて、再度insertした時に、以前insertした
+"  文字を消せるようにする)
+set backspace=indent,eol,start

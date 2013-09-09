@@ -1,10 +1,10 @@
 #!/bin/bash
 
-DOT_FILES=( _vimrc _gvimrc .vim)
+DOT_FILES=( .vimrc .gvimrc vimfiles)
 
 for file in ${DOT_FILES[@]}
 do
-    if test $file = ".vim"
+    if test $file = "vimfiles"
     then
         ln -s $HOME/dotfiles/$file $HOME/.vim
     else
