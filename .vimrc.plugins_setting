@@ -226,3 +226,10 @@ command! Syn SyntasticCheck
 " :Syntで:SyntasticToggleModeコマンドを実行
 command! Synt SyntasticToggleMode
 
+"------------------------------------
+" Align
+"------------------------------------
+" 日本語用設定
+let g:Align_xstrlen = 3
+" "DrChip"メニューを表示しない
+let g:DrChipTopLvlMenu = ''

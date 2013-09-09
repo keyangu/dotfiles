@@ -42,7 +42,7 @@ NeoBundle 'xmledit'
 
 " Align : 高機能整形・桁揃えプラグイン
 " キーアサインがかぶってるので要調整
-" NeoBundle 'Align'
+NeoBundle 'Align'
 
 " フィルタリングと整形
 " NeoBundle 'godlygeek/tabular'
