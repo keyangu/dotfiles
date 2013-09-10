@@ -32,14 +32,25 @@ endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-	\ 'default' : '',
-	\ 'vimshell' : $HOME.'/.vimshell_hist',
-	\ 'scheme' : $HOME.'/.gosh_completions',
-	\ 'c' : $HOME.'/.vim/dict/c.dict',
-	\ 'javascript' : $HOME.'/.vim/dict/javascript.dict',
-	\ 'vm' : $HOME.'/.vim/dict/vim.dict'
-		\ }
+if !has('win32') && !has('win64')
+	let g:neocomplcache_dictionary_filetype_lists = {
+		\ 'default' : '',
+		\ 'vimshell' : $HOME.'/.vimshell_hist',
+		\ 'scheme' : $HOME.'/.gosh_completions',
+		\ 'c' : $HOME.'/.vim/dict/c.dict',
+		\ 'javascript' : $HOME.'/.vim/dict/javascript.dict',
+		\ 'vm' : $HOME.'/.vim/dict/vim.dict'
+			\ }
+else
+	let g:neocomplcache_dictionary_filetype_lists = {
+		\ 'default' : '',
+		\ 'vimshell' : $HOME.'/.vimshell_hist',
+		\ 'scheme' : $HOME.'/.gosh_completions',
+		\ 'c' : $HOME.'/vimfiles/dict/c.dict',
+		\ 'javascript' : $HOME.'/vimfiles/dict/javascript.dict',
+		\ 'vm' : $HOME.'/vimfiles/dict/vim.dict'
+			\ }
+endif
 
 "インクルードパスの指定
 if !has('win32') && !has('win64')

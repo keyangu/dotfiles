@@ -17,8 +17,9 @@ source ~/dotfiles/.vimrc.tags
 source ~/dotfiles/.vimrc.search
 "移動関連
 source ~/dotfiles/.vimrc.moving
-"Color関連
-source ~/dotfiles/.vimrc.colors
+" Color関連
+" .gvimrcから呼び出す
+"source ~/dotfiles/.vimrc.colors
 "編集関連
 source ~/dotfiles/.vimrc.editing
 "エンコーディング関連

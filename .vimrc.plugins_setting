@@ -201,7 +201,11 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 "------------------------------------
 " Pydiction
 "------------------------------------
-let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
+if has('win32') || has('win64')
+	let g:pydiction_location = '~/vimfiles/bundle/pydiction/complete-dict'
+else
+	let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
+endif
 
 "------------------------------------
 " Syntastic

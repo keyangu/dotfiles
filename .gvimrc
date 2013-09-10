@@ -12,4 +12,6 @@ source $VIMRUNTIME/delmenu.vim
 set langmenu=ja_jp.utf-8
 source $VIMRUNTIME/menu.vim
 
-"colorscheme slate
+" Win GUI版は .gvimrc から呼び出してあげないとちゃんと動かない
+source ~/dotfiles/colors
+

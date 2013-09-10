@@ -3,10 +3,18 @@
 set nocompatible               " Be iMproved
 
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  if has('win32') || has('win64')
+    set runtimepath+=~/vimfiles/bundle/neobundle.vim/
+  else
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+  endif
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+if has('win32') || has('win64')
+  call neobundle#rc(expand('~/vimfiles/bundle/'))
+else
+  call neobundle#rc(expand('~/.vim/bundle/'))
+endif
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -42,7 +50,7 @@ NeoBundle 'xmledit'
 
 " Align : 高機能整形・桁揃えプラグイン
 " キーアサインがかぶってるので要調整
-NeoBundle 'Align'
+" NeoBundle 'Align'
 
 " フィルタリングと整形
 " NeoBundle 'godlygeek/tabular'
