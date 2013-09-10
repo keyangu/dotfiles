@@ -13,5 +13,5 @@ set langmenu=ja_jp.utf-8
 source $VIMRUNTIME/menu.vim
 
 " Win GUI版は .gvimrc から呼び出してあげないとちゃんと動かない
-source ~/dotfiles/colors
+source ~/dotfiles/.vimrc.colors
 
