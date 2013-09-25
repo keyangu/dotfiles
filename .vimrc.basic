@@ -50,3 +50,8 @@ exe "set rtp+=".globpath($GOPATH,  "src/github.com/nsf/gocode/vim")
 filetype plugin indent on
 syntax on
 
+" inoファイルを開いた時にC構文で解釈する
+au BufRead,BufNewFile *.ino set filetype=c
+
+" SConstructファイルを開いた時にpythonで解釈する
+au BufRead,BufNewFile SConstruct set filetype=python

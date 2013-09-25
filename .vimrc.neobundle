@@ -60,7 +60,7 @@ NeoBundle 'h1mesuke/vim-alignta'
 
 " YankRing.vim : ヤンクの履歴を管理し、順々に参照、出力できるようにする
 " C-p,  C-nが被ってるので使う場合はなんとかすること
-NeoBundle 'YankRing.vim'
+"NeoBundle 'YankRing.vim'
 
 " undo履歴を追える (need python support)
 NeoBundle 'Gundo'
