@@ -237,3 +237,13 @@ command! Synt SyntasticToggleMode
 let g:Align_xstrlen = 3
 " "DrChip"メニューを表示しない
 let g:DrChipTopLvlMenu = ''
+
+
+"------------------------------------
+" vim-operator-search
+"------------------------------------
+" 関数内の検索を行う
+" require - https://github.com/kana/vim-textobj-function
+" TODO 多分関数内を正しく認識していなくてうまく動いていない
+nmap <Space>/ <Plug>(operator-search)if
+

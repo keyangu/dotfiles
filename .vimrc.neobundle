@@ -75,6 +75,10 @@ NeoBundle 'tpope/vim-surround'
 " vim-operator-user : 簡単にoperatorを定義できるようにする
 NeoBundle 'operator-user'
 
+" vim-operator-search : 範囲内の検索を行うoperator
+" http://d.hatena.ne.jp/osyo-manga/20131019/1382191487
+NeoBundle 'osyo-manga/vim-operator-search'
+
 " operator-camelize : camel-caseへの変換
 NeoBundle 'operator-camelize'
 
@@ -183,6 +187,8 @@ NeoBundle 'yuroyoro/vimdoc_ja'
 " vimshell : vimのshell
 NeoBundle 'Shougo/vimshell.git'
 
+" gtags.vim : GNU Globalで生成したgtagsをvimから触るプラグイン
+NeoBundle 'vim-scripts/gtags.vim'
 
 " DumbBuf.vim : quickbufっぽくbufferを管理。 "<Leader>b<Space>でBufferList
 "NeoBundle 'DumbBuf'

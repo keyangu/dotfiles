@@ -15,3 +15,7 @@ source $VIMRUNTIME/menu.vim
 " Win GUI版は .gvimrc から呼び出してあげないとちゃんと動かない
 source ~/dotfiles/.vimrc.colors
 
+" visual bell を無効化する
+" 画面端で移動しようとした時のビカビカが目に悪そうなので...
+set novisualbell
+
