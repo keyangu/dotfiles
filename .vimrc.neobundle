@@ -245,6 +245,9 @@ NeoBundle 'thinca/vim-visualstar'
 " Vim内で計算処理を行う(+Python)
 NeoBundle 'gregsexton/VimCalc'
 
+" 閲覧部分のフレームワーク化
+NeoBundle 'thinca/vim-ref'
+
 filetype plugin indent on     " Required!
 
 " Installation check.
