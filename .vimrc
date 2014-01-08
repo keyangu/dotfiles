@@ -32,6 +32,9 @@ source ~/dotfiles/.vimrc.trial
 "一部のプラグインは専用の.vimrcを用意してそちらで設定
 source ~/dotfiles/.vimrc.plugins_setting
 
+"QFixHowmに関する設定
+source ~/dotfiles/.vimrc.qfixhowm
+
 " inoファイルを開いた時にC構文で解釈する
 au BufRead,BufNewFile *.ino set filetype=c
 
