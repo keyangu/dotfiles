@@ -24,6 +24,11 @@ hi clear CursorLine
 hi CursorLine gui=underline
 highlight CursorLine ctermbg=black guibg=black
 
+"let &t_ti = &t_ti . "\e[?6h\e[?69h"
+"let &t_te = "\e[?691\e[?61" . &t_te
+"let &t_CV = "\e[%i%p1%d;%p2%ds"
+"let &t_CS = "y"
+
 " コマンド実行中は再描画しない
 set lazyredraw
 " 高速ターミナル接続を行う

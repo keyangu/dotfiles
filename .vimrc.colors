@@ -20,6 +20,10 @@ elseif &term =~ "xterm-color"
   set t_Sb=[4%dm
 endif
 
+set t_Co=256
+set t_Sf=[3%dm
+set t_Sb=[4%dm
+
 " ハイライト on
 syntax enable
 " 補完候補の色づけ for vim7

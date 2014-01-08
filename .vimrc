@@ -19,7 +19,7 @@ source ~/dotfiles/.vimrc.search
 source ~/dotfiles/.vimrc.moving
 " Color関連
 " .gvimrcから呼び出す
-"source ~/dotfiles/.vimrc.colors
+source ~/dotfiles/.vimrc.colors
 "編集関連
 source ~/dotfiles/.vimrc.editing
 "エンコーディング関連
