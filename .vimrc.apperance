@@ -29,6 +29,12 @@ highlight CursorLine ctermbg=black guibg=black
 "let &t_CV = "\e[%i%p1%d;%p2%ds"
 "let &t_CS = "y"
 
+if has('unix')
+  set guifont=Ricty\ for\ Powerline\ 10
+  set guifontwide=Ricty\ 10
+  set ambiwidth=double
+endif
+
 " コマンド実行中は再描画しない
 set lazyredraw
 " 高速ターミナル接続を行う
