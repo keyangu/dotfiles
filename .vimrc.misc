@@ -8,15 +8,3 @@ noremap ; :
 " :でもexコマンドに入れるようにしておく
 " noremap : ;
 
-if has('unix')
-	" ========== linuxで日本語入力しやすくする ===========
-	" https://sites.google.com/site/fudist/Home/vim-nihongo-ban/vim-japanese/ime-control#instal://sites.google.com/site/fudist/Home/vim-nihongo-ban/vim-japanese/ime-control#install
-	set runtimepath+=~/data/im_control.vim-master
-	inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
-	"PythonによるIBus制御指定
-	let IM_CtrlIBusPython = 1
-	" <ESC>押下後のIM切替開始までの反応が遅い場合はttimeoutlenを短く設定してみてください(ミリ秒)
-	set timeout timeoutlen=3000 ttimeoutlen=100
-
-endif
-
