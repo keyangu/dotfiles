@@ -209,6 +209,7 @@ NeoBundle 'vim-scripts/gtags.vim'
   NeoBundle 'mrkn256.vim'
   NeoBundle 'tomasr/molokai'
   NeoBundle 'yuroyoro/yuroyoro256.vim'
+  NeoBundle '29decibel/codeschool-vim-theme'
 " }}}
 
 " Unite {{{{

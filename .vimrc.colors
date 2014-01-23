@@ -4,6 +4,7 @@
 
 " colorscheme
 colorscheme yuroyoro256
+"colorscheme codeschool
 
 if &term =~ "xterm-256color" || "screen-256color"
 " 256色
