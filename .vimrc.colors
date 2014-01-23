@@ -21,6 +21,8 @@ elseif &term =~ "xterm-color"
   set t_Sb=[4%dm
 endif
 
+" 使用しているターミナルが"xterm-color"なのに上のifelseがちゃんと
+" 動いていないので、強制的に256色表示
 set t_Co=256
 set t_Sf=[3%dm
 set t_Sb=[4%dm

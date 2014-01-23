@@ -1,4 +1,4 @@
-"let mapleader = ","              " キーマップリーダー
+"let mapleader = ","              " キーマップリーダー(defaultは'\')
 set scrolloff=2                  " スクロール時の余白確保
 set textwidth=0                  " 一行に長い文章を書いていても自動折り返しをしない
 set nowrap                       " 折り返ししない
@@ -25,8 +25,9 @@ set ttymouse=xterm2
 
 "ヤンクした文字は、システムのクリップボードに入れる"
 set clipboard=unnamed
-" 挿入モードでCtrl+kを押すとクリップボードの内容を貼り付けられるようにする "
-imap <C-p>  <ESC>"*pa
+" 挿入モードでCtrl+pを押すとクリップボードの内容を貼り付けられるようにする "
+" imap <C-p>  <ESC>"*pa
+imap <C-p>  <ESC>pa
 
 " Ev/Rvでvimrcの編集と反映
 command! Ev edit $MYVIMRC

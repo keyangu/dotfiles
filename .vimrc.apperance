@@ -24,12 +24,22 @@ hi clear CursorLine
 hi CursorLine gui=underline
 highlight CursorLine ctermbg=black guibg=black
 
-"let &t_ti = &t_ti . "\e[?6h\e[?69h"
-"let &t_te = "\e[?691\e[?61" . &t_te
+" コンソール画面復元に関する設定。'restorescreen'を参照
+let &t_ti = &t_ti . "\e[?6h\e[?69h"
+let &t_te = "\e[?691\e[?61" . &t_te
+
+" 'scroll-region'に関する設定。使用しているターミナルに応じて設定が必要と思われ
 "let &t_CV = "\e[%i%p1%d;%p2%ds"
 "let &t_CS = "y"
+
+if has('unix')
+  set guifont=Ricty\ for\ Powerline\ 10
+  set guifontwide=Ricty\ 10
+  set ambiwidth=double
+endif
 
 " コマンド実行中は再描画しない
 set lazyredraw
 " 高速ターミナル接続を行う
+" ウィンドウのスクロール時に再描画する
 set ttyfast
