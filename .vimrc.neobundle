@@ -124,6 +124,7 @@ NeoBundle 'Shougo/neocomplcache'
 
 " neocomplcacheのsinpet補完
 NeoBundle 'Shougo/neosnippet.git'
+NeoBundle 'Shougo/neosnippet-snippets'
 
 " various langueages snippets
 NeoBundle 'honza/vim-snippets'
@@ -215,7 +216,9 @@ NeoBundle 'vim-scripts/gtags.vim'
   " unite.vim : vim scriptで実装されたanythingプラグイン
   NeoBundle 'Shougo/unite.vim'
   NeoBundle 'tsukkee/unite-help'
-  NeoBundle 'h1mesuke/unite-outline'
+  " unite-outlineはShougoさんがforkした方を使うほうがいいかも
+  " NeoBundle 'h1mesuke/unite-outline'
+  NeoBundle 'Shougo/unite-outline'
   NeoBundle 'Sixeight/unite-grep'
   " NeoBundle 'basyura/unite-rails'
   NeoBundle 'thinca/vim-unite-history'
@@ -247,6 +250,9 @@ NeoBundle 'gregsexton/VimCalc'
 
 " 閲覧部分のフレームワーク化
 NeoBundle 'thinca/vim-ref'
+
+" ファイルのテンプレートを選択できるplugin
+" NeoBundle 'qtmplsel.vim'
 
 filetype plugin indent on     " Required!
 
