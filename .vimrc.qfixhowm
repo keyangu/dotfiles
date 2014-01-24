@@ -7,13 +7,13 @@ if has('win32') || has('win64')
 	let QFixHowm_Key = 'g'
 
 	" メモの保存先(DropBoxにしておくと同期できる)
-	let howm_dir              = 'C:/Users/yanagi/Dropbox/howm'
+	let howm_dir              = '~/Dropbox/howm'
 	let howm_filename         = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
 
 	" 休日定義ファイル
-	let QFixHowm_HolidayFile  = 'C:/Users/yanagi/noregprogram/qfixapp/misc/holiday/Sche-Hd-0000-00-000000.cp932'
+	let QFixHowm_HolidayFile  = '~/noregprogram/qfixapp/misc/holiday/Sche-Hd-0000-00-000000.utf8'
 
-	let mygrepprg             = 'grep'
+	let mygrepprg             = 'agrep.vim'
 	let MyGrep_cygwin17       = 1
 
 	" textwidthの再設定
