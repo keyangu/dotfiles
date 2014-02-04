@@ -68,10 +68,9 @@ NeoBundle 'Gundo'
 " surround.vim : テキストを括弧で囲む／削除する
 NeoBundle 'tpope/vim-surround'
 
-" smartchr.vim : ==などの前後を整形
-" 状況に応じてスペースの数は変える必要があるので今は使わない
+" smartchr.vim : キー入力で指定したパターンを切り替えることができる
 "NeoBundle 'smartchr'
-"
+
 " vim-operator-user : 簡単にoperatorを定義できるようにする
 NeoBundle 'operator-user'
 
@@ -163,8 +162,8 @@ NeoBundle 'rkulla/pydiction'
 
 
 " syntax, error {{{
-"		 syntaxとかエラーとかを表示してくれるあたり
-"		PCが非力なせいでとても遅くなる環境があるので、ひとまず見送り中
+" syntaxとかエラーとかを表示してくれるあたり
+" PCが非力なせいでとても遅くなる環境があるので、ひとまず見送り中
 " quickrun.vim : 編集中のファイルを簡単に実行できるプラグイン
 NeoBundle 'thinca/vim-quickrun'
 
