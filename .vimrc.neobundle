@@ -253,6 +253,9 @@ NeoBundle 'thinca/vim-ref'
 " ファイルのテンプレートを選択できるplugin
 " NeoBundle 'qtmplsel.vim'
 
+" テンプレート
+NeoBundle 'mattn/sonictemplate-vim'
+
 filetype plugin indent on     " Required!
 
 " Installation check.
