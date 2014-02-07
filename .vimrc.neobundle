@@ -2,6 +2,11 @@
 
 set nocompatible               " Be iMproved
 
+" gocode用に$GOROOT/misc/vimにrtpを通す
+if has('vim_starting')
+  set rtp+=$GOROOT/misc/vim
+endif
+
 if has('vim_starting')
   if has('win32') || has('win64')
     set runtimepath+=~/vimfiles/bundle/neobundle.vim/
@@ -253,8 +258,17 @@ NeoBundle 'thinca/vim-ref'
 " ファイルのテンプレートを選択できるplugin
 " NeoBundle 'qtmplsel.vim'
 
-" テンプレート
+" sonictemplate-vim
 NeoBundle 'mattn/sonictemplate-vim'
+
+" vim-gocode
+NeoBundle 'Blackrush/vim-gocode'
+
+" gist.vim
+NeoBundle 'mattn/gist-vim'
+
+" codic-vim
+NeoBundle 'koron/codic-vim'
 
 filetype plugin indent on     " Required!
 
