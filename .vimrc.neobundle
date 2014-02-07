@@ -164,7 +164,6 @@ NeoBundle 'rkulla/pydiction'
 
 " syntax, error {{{
 " syntaxとかエラーとかを表示してくれるあたり
-" PCが非力なせいでとても遅くなる環境があるので、ひとまず見送り中
 " quickrun.vim : 編集中のファイルを簡単に実行できるプラグイン
 NeoBundle 'thinca/vim-quickrun'
 
@@ -246,7 +245,7 @@ NeoBundle 'thinca/vim-visualstar'
 "NeoBundle 'nathanaelkane/vim-indent-guides'
 
 " Vim内で計算処理を行う(+Python)
-NeoBundle 'gregsexton/VimCalc'
+"NeoBundle 'gregsexton/VimCalc'
 
 " 閲覧部分のフレームワーク化
 NeoBundle 'thinca/vim-ref'
