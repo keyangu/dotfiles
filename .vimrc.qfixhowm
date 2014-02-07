@@ -19,7 +19,7 @@ if has('win32') || has('win64')
 	" textwidthの再設定
 	au Filetype qfix_memo setlocal textwidth=0
 
-else
+elseif has('unix')
 
 	" qfixappのパスを指定する
 	set runtimepath+=~/data/qfixapp
@@ -31,6 +31,7 @@ else
 	" 休日定義ファイル
 	let QFixHowm_HolidayFile  = '~/data/qfixapp/misc/holiday/Sche-Hd-0000-00-000000.utf8'
 
+	let QFixHowm_OpenURIcmd = "call system('chromium-browser %s &')"
 endif
 
 " キーマップリーダー
