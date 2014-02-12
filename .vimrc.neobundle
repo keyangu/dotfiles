@@ -56,12 +56,11 @@ NeoBundle 'xmledit'
 " Align : 高機能整形・桁揃えプラグイン
 " キーアサインがかぶってるので要調整
 " NeoBundle 'Align'
+" マルチバイト対応の整形
+NeoBundle 'h1mesuke/vim-alignta'
 
 " フィルタリングと整形
 " NeoBundle 'godlygeek/tabular'
-
-" マルチバイト対応の整形
-NeoBundle 'h1mesuke/vim-alignta'
 
 " YankRing.vim : ヤンクの履歴を管理し、順々に参照、出力できるようにする
 " C-p,  C-nが被ってるので使う場合はなんとかすること
@@ -202,6 +201,9 @@ NeoBundle 'vim-scripts/gtags.vim'
 
 " NERDTree : ツリー型エクスプローラ
 "NeoBundle 'The-NERD-tree'
+
+" vimfiler
+NeoBundle 'Shougo/vimfiler.vim'
 
 " エンコード処理
 "NeoBundle 'banyan/recognize_charcode.vim'
