@@ -266,11 +266,15 @@ NeoBundle 'mattn/sonictemplate-vim'
 " vim-gocode
 NeoBundle 'Blackrush/vim-gocode'
 
-" gist.vim
-NeoBundle 'mattn/gist-vim'
-
 " codic-vim
 NeoBundle 'koron/codic-vim'
+
+" webapi-vim
+" NeoBundle 'mattn/webapi-vim'
+
+" gist.vim
+" NeoBundle 'mattn/gist-vim'
+
 
 filetype plugin indent on     " Required!
 

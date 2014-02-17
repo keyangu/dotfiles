@@ -3,9 +3,6 @@ if has('win32') || has('win64')
 	" qfixappのパスを指定する
 	set runtimepath+=C:/Users/yanagi/noregprogram/qfixapp
 
-	" キーマップリーダー
-	let QFixHowm_Key = 'g'
-
 	" メモの保存先(DropBoxにしておくと同期できる)
 	let howm_dir              = '~/Dropbox/howm'
 	let howm_filename         = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
@@ -13,7 +10,8 @@ if has('win32') || has('win64')
 	" 休日定義ファイル
 	let QFixHowm_HolidayFile  = '~/noregprogram/qfixapp/misc/holiday/Sche-Hd-0000-00-000000.utf8'
 
-	let mygrepprg             = 'agrep.vim'
+	" let mygrepprg             = 'agrep.vim'
+	let mygrepprg             = 'pt'
 	let MyGrep_cygwin17       = 1
 
 	" textwidthの再設定
