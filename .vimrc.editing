@@ -28,10 +28,10 @@ nmap ye ;let @"=expand("<cword>")<CR>
 " inoremap , ,<Space>
 
 " XMLの閉タグを自動挿入
-augroup MyXML
-  autocmd!
-  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-augroup END
+"augroup MyXML
+"  autocmd!
+"  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+"augroup END
 
 "  Insert mode中で単語単位/行単位の削除をアンドゥ可能にする
 inoremap <C-u>  <C-g>u<C-u>
@@ -100,20 +100,20 @@ cnoremap <expr> <C-X>dt strftime('%Y%m%d')
 "map <Leader>j !python -m json.tool<CR>
 
 " quickfixウィンドウではq/ESCで閉じる
-autocmd FileType qf nnoremap <buffer> q :ccl<CR>
-autocmd FileType qf nnoremap <buffer> <ESC> :ccl<CR>
+"autocmd FileType qf nnoremap <buffer> q :ccl<CR>
+"autocmd FileType qf nnoremap <buffer> <ESC> :ccl<CR>
 
 " cwでquickfixウィンドウの表示をtoggleするようにした
-function! s:toggle_qf_window()
-  for bufnr in range(1,  winnr('$'))
-    if getwinvar(bufnr,  '&buftype') ==# 'quickfix'
-      execute 'ccl'
-      return
-    endif
-  endfor
-  execute 'botright cw'
-endfunction
-nnoremap <silent> cw :call <SID>toggle_qf_window()<CR>
+"function! s:toggle_qf_window()
+"  for bufnr in range(1,  winnr('$'))
+"    if getwinvar(bufnr,  '&buftype') ==# 'quickfix'
+"      execute 'ccl'
+"      return
+"    endif
+"  endfor
+"  execute 'botright cw'
+"endfunction
+"nnoremap <silent> cw :call <SID>toggle_qf_window()<CR>
 
 " backspace設定
 " オートインデントのタブや空白を削除、改行を削除、
