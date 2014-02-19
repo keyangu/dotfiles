@@ -1,19 +1,22 @@
 "-------------------------------------------------------------------------------
-" ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°é–¢é€£ Encoding
+" ƒGƒ“ƒR[ƒfƒBƒ“ƒOŠÖ˜A Encoding
 "-------------------------------------------------------------------------------
-if has('win32') || has('win64')
-	set ffs=dos,unix,mac  " æ”¹è¡Œæ–‡å­—ã‚’è‡ªå‹•èªè­˜
-else
-	set ffs=unix,dos,mac  " æ”¹è¡Œæ–‡å­—ã‚’è‡ªå‹•èªè­˜
-endif
-set encoding=utf-8    " ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°
 
-"é–‹ããƒ•ã‚¡ã‚¤ãƒ«ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’è‡ªå‹•èªè­˜ã™ã‚‹
+" “à•”ƒGƒ“ƒR[ƒfƒBƒ“ƒO‚ğUTF-8‚É‚·‚é
+set encoding=utf-8
+
+if has('win32') || has('win64')
+	set ffs=dos,unix,mac  " ‰üs•¶š‚ğ©“®”F¯
+else
+	set ffs=unix,dos,mac  " ‰üs•¶š‚ğ©“®”F¯
+endif
+
+"ŠJ‚­ƒtƒ@ƒCƒ‹‚Ì•¶šƒR[ƒh‚ğ©“®”F¯‚·‚é
 set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
 
-" cvsã®æ™‚ã¯æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’euc-jpã«è¨­å®š
+" cvs‚Ì‚Í•¶šƒR[ƒh‚ğeuc-jp‚Éİ’è
 "autocmd FileType cvs :set fileencoding=euc-jp
-" ä»¥ä¸‹ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®æ™‚ã¯æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’utf-8ã«è¨­å®š
+" ˆÈ‰º‚Ìƒtƒ@ƒCƒ‹‚Ì‚Í•¶šƒR[ƒh‚ğutf-8‚Éİ’è
 "autocmd FileType svn :set fileencoding=utf-8
 "autocmd FileType js :set fileencoding=utf-8
 "autocmd FileType css :set fileencoding=utf-8
@@ -21,17 +24,18 @@ set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp
 "autocmd FileType xml :set fileencoding=utf-8
 "autocmd FileType java :set fileencoding=utf-8
 "autocmd FileType scala :set fileencoding=utf-8
+autocmd FileType go :set fileencoding=utf-8
 
-" ãƒ¯ã‚¤ãƒ«ãƒ‰ã‚«ãƒ¼ãƒ‰ã§è¡¨ç¤ºã™ã‚‹ã¨ãã«å„ªå…ˆåº¦ã‚’ä½ãã™ã‚‹æ‹¡å¼µå­
+" ƒƒCƒ‹ƒhƒJ[ƒh‚Å•\¦‚·‚é‚Æ‚«‚É—Dæ“x‚ğ’á‚­‚·‚éŠg’£q
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
-" æŒ‡å®šæ–‡å­—ã‚³ãƒ¼ãƒ‰ã§å¼·åˆ¶çš„ã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
+" w’è•¶šƒR[ƒh‚Å‹­§“I‚Éƒtƒ@ƒCƒ‹‚ğŠJ‚­
 command! Cp932 edit ++enc=cp932
 command! Eucjp edit ++enc=euc-jp
 command! Iso2022jp edit ++enc=iso-2022-jp
 command! Utf8 edit ++enc=utf-8
 command! Jis Iso2022jp
 command! Sjis Cp932
-" æŒ‡å®šæ”¹è¡Œã‚³ãƒ¼ãƒ‰ã§å¼·åˆ¶çš„ã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
+" w’è‰üsƒR[ƒh‚Å‹­§“I‚Éƒtƒ@ƒCƒ‹‚ğŠJ‚­
 command! Unix edit ++ff=unix
 command! Dos edit ++ff=dos

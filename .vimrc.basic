@@ -8,9 +8,9 @@ set noswapfile                   " スワップファイル作らない
 "set hidden                       " 編集中でも他のファイルを開けるようにする
 "set backspace=indent,eol,start   " バックスペースでなんでも消せるように
 "set formatoptions=lmoq           " テキスト整形オプション，マルチバイト系を追加
-set visualbell t_vb=             " ビープをならさない
+set visualbell t_vb=             " ビープをならさない, 画面フラッシュもしない
 set browsedir=buffer             " Exploreの初期ディレクトリ
-set whichwrap=b,s,h,l,<,>,[,]    " カーソルを行頭、行末で止まらないようにする
+set whichwrap=b,s,h,l,<,>,[,]    " カーソル移動を行頭、行末で止まらないようにする
 set showcmd                      " コマンドをステータス行に表示
 set showmode                     " 現在のモードを表示
 "set viminfo='50,<1000,s100,\"50  " viminfoファイルの設定
@@ -25,11 +25,11 @@ set mouse=a
 set guioptions+=a
 set ttymouse=xterm2
 
-"ヤンクした文字は、システムのクリップボードに入れる"
+"ヤンクした文字は、システムのクリップボードに入れる
 set clipboard=unnamed
-" 挿入モードでCtrl+pを押すとクリップボードの内容を貼り付けられるようにする "
+" 挿入モードでCtrl+pを押すとクリップボードの内容を貼り付けられるようにする
 " imap <C-p>  <ESC>"*pa
-imap <C-p>  <ESC>pa
+" imap <C-p>  <ESC>pa
 
 " Ev/Rvでvimrcの編集と反映
 command! Ev edit $MYVIMRC
@@ -38,8 +38,6 @@ command! Rv source $MYVIMRC
 command! Tv edit ~/dotfiles/.vimrc.trial
 " EDFvで~/dotfilesの編集
 command! EDFv edit ~/dotfiles
-" MvでVim用メモの編集
-command! Mv edit ~/dotfiles/vimemo.jax
 
 set helpfile=$VIMRUNTIME/doc/help.txt
 
@@ -54,8 +52,32 @@ exe "set rtp+=".globpath($GOPATH,  "src/github.com/nsf/gocode/vim")
 filetype plugin indent on
 syntax on
 
-" inoファイルを開いた時にC構文で解釈する
-au BufRead,BufNewFile *.ino set filetype=c
-
 " SConstructファイルを開いた時にpythonで解釈する
 au BufRead,BufNewFile SConstruct set filetype=python
+
+"Gtags(global)を使用するためのショートカット
+map <C-g> :Gtags
+map <C-i> :Gtags -f %<CR>
+map <C-j> :GtagsCursor<CR>
+map <C-n> :cn<CR>
+map <C-p> :cp<CR>
+
+" TortoiseSVNをコマンドから実行 \td, \tl, \tr
+" Save the current buffer and execute the Tortoise SVN interface's diff program
+" map <unique> <silent> <leader>td :w<CR>:silent !"C:\Progra~1\TortoiseSVN\bin\TortoiseProc.exe /command:diff  /path:"%:p" /closeonend:0"<CR>
+" Save the current buffer and execute the Tortoise SVN interface's log
+" map <unique> <silent> <leader>tl :w<CR>:silent !"C:\Progra~1\TortoiseSVN\bin\TortoiseProc.exe /command:log   /path:"%:p" /closeonend:0"<CR>
+" Save the current buffer and execute the Tortoise SVN interface's revision graph
+" map <unique> <silent> <leader>tr :w<CR>:silent !"C:\Progra~1\TortoiseSVN\bin\TortoiseProc.exe /command:revisiongraph  epath:"%:p" /closeonend:0"<CR>
+" Save the current buffer and execute the Tortoise SVN interface's blame program
+" map <unique> <leader>tb :call TortoiseBlame()<CR>
+"fu! TortoiseBlame()
+"  " Save the buffer
+"  silent execute(':w')
+"  " Now run Tortoise to get the blame dialog to display
+"  let filename = expand("%:p")
+"  let linenum  = line(".")
+"  silent execute('!C:\Progra~1\TortoiseSVN\bin\TortoiseProc.exe /command:blame /path:"' . filename . '" /line:' . linenum . ' /closeonend:0')
+"endfunc
+
+set grepprg=pt

@@ -48,10 +48,10 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'bling/vim-airline'
 
 " コメント処理補助 (<Leader>c<space>, <Leader>csでコメントをトグル)
-NeoBundle 'scrooloose/nerdcommenter.git'
+"NeoBundle 'scrooloose/nerdcommenter.git'
 
 " XMLとかHTMLとかの編集機能を強化する
-NeoBundle 'xmledit'
+"NeoBundle 'xmledit'
 
 " Align : 高機能整形・桁揃えプラグイン
 " キーアサインがかぶってるので要調整
@@ -70,7 +70,7 @@ NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'Gundo'
 
 " surround.vim : テキストを括弧で囲む／削除する
-NeoBundle 'tpope/vim-surround'
+"NeoBundle 'tpope/vim-surround'
 
 " smartchr.vim : キー入力で指定したパターンを切り替えることができる
 "NeoBundle 'smartchr'
@@ -117,13 +117,13 @@ NeoBundle 'textobj-entire'
 NeoBundle 'textobj-jabraces'
 
 " <C-a>でtrue/false切替。他色々
-NeoBundle 'taku-o/vim-toggle'
+"NeoBundle 'taku-o/vim-toggle'
 
-" 補完 neocomplcache.vim : 究極のVim的補完環境
-NeoBundle 'Shougo/neocomplcache'
+" neocomplcache.vim : Vim的補完環境
+"NeoBundle 'Shougo/neocomplcache'
 " Vim7.3.885以上、+lua でビルドした Vim なら neocomplete のほうがいいらしいよ
 " LinuxのVimはソースから自分でビルドしたほうが新しい物を使えるよ
-"NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/neocomplete'
 
 " neocomplcacheのsinpet補完
 NeoBundle 'Shougo/neosnippet.git'
@@ -139,16 +139,16 @@ NeoBundle 'Shougo/context_filetype.vim'
 " NeoBundle 'smartword'
 
 " camelcasemotion : CamelCaseやsnake_case単位でのワード移動
-NeoBundle 'camelcasemotion'
+"NeoBundle 'camelcasemotion'
 
 " <Leader><Leader>w/fなどで、motion先をhilightする
-NeoBundle 'EasyMotion'
+"NeoBundle 'EasyMotion'
 
 " matchit.vim : 「%」による対応括弧へのカーソル移動機能を拡張
-NeoBundle 'matchit.zip'
+"NeoBundle 'matchit.zip'
 
 " open-browser.vim : カーソルの下のURLを開くor単語を検索エンジンで検索
-NeoBundle 'tyru/open-browser.vim'
+"NeoBundle 'tyru/open-browser.vim'
 
 " Pydiction : Python用入力補完
 NeoBundle 'rkulla/pydiction'
@@ -165,21 +165,20 @@ NeoBundle 'rkulla/pydiction'
 " python
 "NeoBundle 'yuroyoro/vim-python'
 
-
 " syntax, error {{{
 " syntaxとかエラーとかを表示してくれるあたり
 " quickrun.vim : 編集中のファイルを簡単に実行できるプラグイン
 NeoBundle 'thinca/vim-quickrun'
 
 		" syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
-NeoBundle 'scrooloose/syntastic'
+"NeoBundle 'scrooloose/syntastic'
 
 		" エラーがある場所をhilight
 		" NeoBundle 'errormarker.vim'
 "}}}
 
 " vimからGit操作する
-NeoBundle 'tpope/vim-fugitive'
+"NeoBundle 'tpope/vim-fugitive'
 
 " git-vim: Plugin files for calling git functions from inside Vim and Syntax files for git displays
 "NeoBundle 'motemen/git-vim'
@@ -233,16 +232,16 @@ NeoBundle 'Shougo/vimfiler.vim'
 
 " }}}
 
-" netrw v14xの動きが気にくわないのでv136で取得
-NeoBundle 'netrw.vim', '136'
+" netrw
+NeoBundle 'netrw.vim'
 
-NeoBundle 'taglist.vim'
+"NeoBundle 'taglist.vim'
 
 " VimからSubversion操作したいな
-NeoBundle 'vcscommand.vim'
+"NeoBundle 'vcscommand.vim'
 
 " ディレクトリを指定して、ディレクトリ内の差分を表示する
-NeoBundle 'DirDiff.vim'
+"NeoBundle 'DirDiff.vim'
 
 " ビジュアルモードで選択したテキストで*検索する
 NeoBundle 'thinca/vim-visualstar'
@@ -264,7 +263,7 @@ NeoBundle 'thinca/vim-ref'
 NeoBundle 'mattn/sonictemplate-vim'
 
 " vim-gocode
-NeoBundle 'Blackrush/vim-gocode'
+"NeoBundle 'Blackrush/vim-gocode'
 
 " codic-vim
 NeoBundle 'koron/codic-vim'
