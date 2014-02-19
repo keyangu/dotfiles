@@ -121,3 +121,8 @@ nnoremap <silent> cw :call <SID>toggle_qf_window()<CR>
 " (insertを抜けて、再度insertした時に、以前insertした
 "  文字を消せるようにする)
 set backspace=indent,eol,start
+
+" <C-a>, <C-x>で行う加減算で、16進数は考慮するが8進数は考慮しない
+" 8進数を考慮したい場合は以下
+" set nrformats=octal,hex
+set nrformats=hex
