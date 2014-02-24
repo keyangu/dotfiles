@@ -25,8 +25,6 @@ set mouse=a
 set guioptions+=a
 set ttymouse=xterm2
 
-"ヤンクした文字は、システムのクリップボードに入れる
-set clipboard=unnamed
 " 挿入モードでCtrl+pを押すとクリップボードの内容を貼り付けられるようにする
 " imap <C-p>  <ESC>"*pa
 " imap <C-p>  <ESC>pa
@@ -45,12 +43,14 @@ set helpfile=$VIMRUNTIME/doc/help.txt
 filetype plugin on
 
 " GoLangのpluginをruntime pathへ
-filetype off
-filetype plugin indent off
-set rtp+=$GOROOT/misc/vim
-exe "set rtp+=".globpath($GOPATH,  "src/github.com/nsf/gocode/vim")
-filetype plugin indent on
-syntax on
+"if has('vim_starting')
+"    filetype off
+"    filetype plugin indent off
+    set rtp+=$GOROOT/misc/vim
+    exe "set rtp+=".globpath($GOPATH,  "src/github.com/nsf/gocode/vim")
+"    filetype plugin indent on
+"    syntax on
+"endif
 
 " SConstructファイルを開いた時にpythonで解釈する
 au BufRead,BufNewFile SConstruct set filetype=python
@@ -61,23 +61,5 @@ map <C-i> :Gtags -f %<CR>
 map <C-j> :GtagsCursor<CR>
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
-
-" TortoiseSVNをコマンドから実行 \td, \tl, \tr
-" Save the current buffer and execute the Tortoise SVN interface's diff program
-" map <unique> <silent> <leader>td :w<CR>:silent !"C:\Progra~1\TortoiseSVN\bin\TortoiseProc.exe /command:diff  /path:"%:p" /closeonend:0"<CR>
-" Save the current buffer and execute the Tortoise SVN interface's log
-" map <unique> <silent> <leader>tl :w<CR>:silent !"C:\Progra~1\TortoiseSVN\bin\TortoiseProc.exe /command:log   /path:"%:p" /closeonend:0"<CR>
-" Save the current buffer and execute the Tortoise SVN interface's revision graph
-" map <unique> <silent> <leader>tr :w<CR>:silent !"C:\Progra~1\TortoiseSVN\bin\TortoiseProc.exe /command:revisiongraph  epath:"%:p" /closeonend:0"<CR>
-" Save the current buffer and execute the Tortoise SVN interface's blame program
-" map <unique> <leader>tb :call TortoiseBlame()<CR>
-"fu! TortoiseBlame()
-"  " Save the buffer
-"  silent execute(':w')
-"  " Now run Tortoise to get the blame dialog to display
-"  let filename = expand("%:p")
-"  let linenum  = line(".")
-"  silent execute('!C:\Progra~1\TortoiseSVN\bin\TortoiseProc.exe /command:blame /path:"' . filename . '" /line:' . linenum . ' /closeonend:0')
-"endfunc
 
 set grepprg=pt

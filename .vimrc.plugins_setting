@@ -255,8 +255,8 @@ let g:DrChipTopLvlMenu = ''
 "------------------------------------
 " vim-operator-search
 "------------------------------------
+nmap <Space>s <Plug>(operator-search)
 " 関数内の検索を行う
 " require - https://github.com/kana/vim-textobj-function
-" TODO 多分関数内を正しく認識していなくてうまく動いていない
 nmap <Space>/ <Plug>(operator-search)if
 

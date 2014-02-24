@@ -10,8 +10,8 @@ if has('win32') || has('win64')
 	" 休日定義ファイル
 	let QFixHowm_HolidayFile  = '~/noregprogram/qfixapp/misc/holiday/Sche-Hd-0000-00-000000.utf8'
 
-	" let mygrepprg             = 'agrep.vim'
-	let mygrepprg             = 'pt'
+	let mygrepprg             = 'agrep.vim'
+	" let mygrepprg             = 'pt'
 	let MyGrep_cygwin17       = 1
 
 	" textwidthの再設定

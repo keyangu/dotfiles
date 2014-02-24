@@ -37,7 +37,7 @@ if has("autocmd")
   autocmd FileType sh         setlocal sw=4 sts=4 ts=4
   autocmd FileType sql        setlocal sw=4 sts=4 ts=4
   autocmd FileType vb         setlocal sw=4 sts=4 ts=4
-  autocmd FileType vim        setlocal sw=2 sts=2 ts=2
+  autocmd FileType vim        setlocal sw=4 sts=4 ts=4 expandtab
   autocmd FileType wsh        setlocal sw=4 sts=4 ts=4
   autocmd FileType xhtml      setlocal sw=4 sts=4 ts=4
   autocmd FileType xml        setlocal sw=4 sts=4 ts=4

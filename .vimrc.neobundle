@@ -2,11 +2,6 @@
 
 set nocompatible               " Be iMproved
 
-" gocode用に$GOROOT/misc/vimにrtpを通す
-if has('vim_starting')
-  set rtp+=$GOROOT/misc/vim
-endif
-
 if has('vim_starting')
   if has('win32') || has('win64')
     set runtimepath+=~/vimfiles/bundle/neobundle.vim/
@@ -86,7 +81,7 @@ NeoBundle 'osyo-manga/vim-operator-search'
 NeoBundle 'operator-camelize'
 
 " operator-replace : yankしたものでreplaceする
-NeoBundle 'operator-replace'
+"NeoBundle 'operator-replace'
 
 " textobj-user : 簡単にVimエディタのテキストオブジェクトをつくれる
 NeoBundle 'textobj-user'
@@ -94,8 +89,8 @@ NeoBundle 'textobj-user'
 " vim-textobj-syntax : syntax hilightされたものをtext-objectに
 NeoBundle 'kana/vim-textobj-syntax.git'
 
-" vim-textobj-plugins : いろんなものをtext-objectにする
-NeoBundle 'thinca/vim-textobj-plugins.git'
+" vim-textobj-plugins : いろんなものをtext-objectにする(obsolate)
+" NeoBundle 'thinca/vim-textobj-plugins.git'
 
 " vim-textobj-lastpat : 最後に検索されたパターンをtext-objectに
 NeoBundle 'kana/vim-textobj-lastpat.git'
@@ -104,7 +99,7 @@ NeoBundle 'kana/vim-textobj-lastpat.git'
 NeoBundle 'kana/vim-textobj-indent.git'
 
 " vim-textobj-function : 関数の中身をtext-objectに
-NeoBundle 'kana/vim-textobj-function.git'
+NeoBundle 'kana/vim-textobj-function'
 
 " vim-textobj-fold : 折りたたまれたアレをtext-objectに
 " NeoBundle 'kana/vim-textobj-fold.git'
@@ -120,10 +115,10 @@ NeoBundle 'textobj-jabraces'
 "NeoBundle 'taku-o/vim-toggle'
 
 " neocomplcache.vim : Vim的補完環境
-"NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplcache'
 " Vim7.3.885以上、+lua でビルドした Vim なら neocomplete のほうがいいらしいよ
 " LinuxのVimはソースから自分でビルドしたほうが新しい物を使えるよ
-NeoBundle 'Shougo/neocomplete'
+" NeoBundle 'Shougo/neocomplete'
 
 " neocomplcacheのsinpet補完
 NeoBundle 'Shougo/neosnippet.git'
