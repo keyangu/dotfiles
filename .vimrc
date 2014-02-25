@@ -267,15 +267,19 @@ set noswapfile                   " スワップファイル作らない
 set hidden                       " 編集中でも他のファイルを開けるようにする
 set backspace=indent,eol,start   " バックスペースでなんでも消せるように
 "set formatoptions=lmoq           " テキスト整形オプション，マルチバイト系を追加
-set visualbell t_vb=             " ビープをならさない, 画面フラッシュもしない
 set browsedir=buffer             " Exploreの初期ディレクトリ
 set whichwrap=b,s,h,l,<,>,[,]    " カーソル移動を行頭、行末で止まらないようにする
 set showcmd                      " コマンドをステータス行に表示
 set showmode                     " 現在のモードを表示
 "set viminfo='50,<1000,s100,\"50  " viminfoファイルの設定
 "set modelines=0                  " モードラインは無効
+set matchpairs& matchpairs+=<:> " カッコの組に<>を追加
+set noerrorbells " エラーメッセージに伴うベルを発生させない
+set novisualbell " ビジュアルベルを使用しない
+" 以下の設定をする場合は t_vbを.gvimrcに書かないと動作しないかも
+"set visualbell t_vb=             " ビープをならさない, 画面フラッシュもしない
 
-set clipboard+=unnamed           " OSのクリップボードを使用する
+set clipboard& clipboard+=unnamed  " OSのクリップボードを使用する
 "set clipboard=unnamedplus
 
 " ターミナルでマウスを使用できるようにする
@@ -285,7 +289,7 @@ set ttymouse=xterm2
 
 set helpheight=12               " helpウィンドウを開いた時の高さ
 set helpfile=$VIMRUNTIME/doc/help.txt
-set grepprg=pt
+set grepprg=pt " grepにptを使用する
 
 " 挿入モードでCtrl+pを押すとクリップボードの内容を貼り付けられるようにする
 " imap <C-p>  <ESC>"*pa
@@ -704,15 +708,16 @@ vnoremap > >gv
 " 内部エンコーディングをUTF-8にする
 set encoding=utf-8
 
+"開くファイルの文字コードを自動認識する
+"set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
+set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
+
+" 改行コード認識
 if has('win32') || has('win64')
 	set ffs=dos,unix,mac  " 改行文字を自動認識
 else
 	set ffs=unix,dos,mac  " 改行文字を自動認識
 endif
-
-"開くファイルの文字コードを自動認識する
-"set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
-set fileencodings=utf-8,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
 
 " cvsの時は文字コードをeuc-jpに設定
 "autocmd FileType cvs :set fileencoding=euc-jp
