@@ -8,7 +8,7 @@ command! -nargs=* AutocmdFT autocmd FileType <args>
 
 " NeoBundle {{{1 ====================
 if has('vim_starting')
-    if has('win32') || has('has64')
+    if has('win32') || has('win64')
         set runtimepath+=~/vimfiles/bundle/neobundle.vim/
         call neobundle#rc(expand('~/vimfiles/bundle/'))
     else
@@ -93,6 +93,7 @@ NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'choplin/unite-vim-hacks'
 NeoBundle 'osyo-manga/unite-fold'
+NeoBundle 'ujihisa/unite-colorscheme'
 "}}}
 
 " ColorSchema{{{2
@@ -102,6 +103,9 @@ NeoBundle 'mrkn256.vim'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'yuroyoro/yuroyoro256.vim'
 NeoBundle '29decibel/codeschool-vim-theme'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'altercation/solarized'
+NeoBundle 'vim-scripts/newspaper.vim'
 " }}}
 
 " ステータスラインをかっこ良くするvim-airline
@@ -125,7 +129,7 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
 
 " コンテキストによって自動的にファイルタイプが変わる
-NeoBundle 'Shougo/context_filetype'
+NeoBundle 'Shougo/context_filetype.vim'
 
 " vimfiler
 NeoBundle 'Shougo/vimfiler.vim'
@@ -147,7 +151,7 @@ NeoBundle 'rhysd/unite-codic.vim'
 "NeoBundle 'EasyMotion'
 
 " matchit.vim : 「%」による対応括弧へのカーソル移動機能を拡張
-"NeoBundle 'matchit.zip'
+NeoBundle 'matchit.zip'
 
 " open-browser.vim : カーソルの下のURLを開くor単語を検索エンジンで検索
 "NeoBundle 'tyru/open-browser.vim'
@@ -244,10 +248,43 @@ NeoBundle 'mattn/sonictemplate-vim'
 "NeoBundle 'Blackrush/vim-gocode'
 
 " webapi-vim
-" NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mattn/webapi-vim'
 
 " gist.vim
-" NeoBundle 'mattn/gist-vim'
+NeoBundle 'mattn/gist-vim'
+
+" ProjectLocal.vim
+" http://blog.supermomonga.com/articles/vim/projectlocal-vim-released.html
+"NeoBundle 'supermomonga/projectlocal.vim'
+
+" hateblo.vim Vimからはてなブログの編集ができる
+NeoBundle 'moznion/hateblo.vim'
+
+" vim-metarw メタ情報を読み書きするための土台, hateblo.vimから使用
+" Windowsの場合、mattnさんのforkを使用
+NeoBundle 'mattn/vim-metarw'
+
+NeoBundle 'mattn/vim-metarw-gdrive'
+
+" はてなダイアリーの投稿、管理ができる
+" 個人的にはシンタックスのみ利用させてもらう
+NeoBundle 'https://github.com/motemen/hatena-vim'
+
+" Excite翻訳で日<-->英翻訳する
+NeoBundle 'mattn/excitetranslate-vim'
+
+" Tagbar
+"NeoBundle 'majutsushi/tagbar'
+
+" vim-versions
+NeoBundle 'hrsh7th/vim-versions.git'
+
+" project.vim
+" NeoBundle 'project.vim'
+
+" vim-precious
+" http://d.hatena.ne.jp/osyo-manga/20130612/1371046408
+NeoBundle 'osyo-manga/vim-precious'
 
 filetype plugin indent on
 
@@ -273,11 +310,11 @@ set showcmd                      " コマンドをステータス行に表示
 set showmode                     " 現在のモードを表示
 "set viminfo='50,<1000,s100,\"50  " viminfoファイルの設定
 "set modelines=0                  " モードラインは無効
+" cのポインタ参照("->")等でbellが鳴るので、bell関連の設定に注意
 set matchpairs& matchpairs+=<:> " カッコの組に<>を追加
 set noerrorbells " エラーメッセージに伴うベルを発生させない
-set novisualbell " ビジュアルベルを使用しない
 " 以下の設定をする場合は t_vbを.gvimrcに書かないと動作しないかも
-"set visualbell t_vb=             " ビープをならさない, 画面フラッシュもしない
+set visualbell t_vb=             " ビープをならさない, 画面フラッシュもしない
 
 set clipboard& clipboard+=unnamed  " OSのクリップボードを使用する
 "set clipboard=unnamedplus
@@ -624,6 +661,9 @@ nmap yk y^
 " カーソルから行頭まで削除
 nnoremap <silent> <C-d> d0
 
+" ノーマルモードでEnterを押すと改行挿入
+nnoremap <CR> o<ESC>
+
 " カーソルから行頭まで削除(インサートモード)
 inoremap <silent> <C-k> <Esc>lc^
 " カーソルから行末まで削除(インサートモード)
@@ -674,7 +714,7 @@ cnoremap <expr> <C-X>dt strftime('%Y%m%d')
 "autocmd FileType qf nnoremap <buffer> q :ccl<CR>
 "autocmd FileType qf nnoremap <buffer> <ESC> :ccl<CR>
 
-" cwでquickfixウィンドウの表示をtoggleするようにした
+"" cwでquickfixウィンドウの表示をtoggleするようにした
 "function! s:toggle_qf_window()
 "  for bufnr in range(1,  winnr('$'))
 "    if getwinvar(bufnr,  '&buftype') ==# 'quickfix'
@@ -700,6 +740,9 @@ set nrformats-=octal
 " インデントの微調整に便利
 vnoremap < <gv
 vnoremap > >gv
+
+" インサートモードを抜けるときにnopasteをセットする
+Autocmd InsertLeave *set nopaste
 
 " editing }}}
 
@@ -953,10 +996,16 @@ nnoremap <silent> [unite]m  :<C-u>Unite -no-split file_mru<CR>
 nnoremap <silent> [unite]d  :<C-u>UniteWithBufferDir -no-split file<CR>
 " snippet一覧
 nnoremap <silent> [unite]s  :<C-u>Unite snippet<CR>
-" unite-outline
-nnoremap <silent> [unite]o  :<C-u>Unite -buffer-name=outline outline<CR>
+" ヤンク履歴を有効にする
+let g:unite_source_history_yank_enable = 1
+nnoremap <silent> [unite]y  :<C-u>Unite -silent history/yank<CR>
+" Line
+nnoremap <silent> g/        :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
 
-" nnoremap <silent> [unite]b  :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+" unite plugin setting {{{
+" unite-outline
+nnoremap <silent> [unite]o  :<C-u>Unite -silent outline -vertical -winwidth=40 -no-start-insert -buffer-name=outline<CR>
+" }}}
 
 " unite grep に pt(The Platinum Searcher)を使う
 nnoremap <silent> [unite]g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
@@ -1178,6 +1227,15 @@ nmap <Space>/ <Plug>(operator-search)if
 
 " }}}
 
+" gist.vim {{{
+let g:gist_show_privates = 1
+let g:gist_post_private = 1
+" }}}
+
+" tagbar {{{
+nnoremap <F8> :TagbarToggle<CR>
+" }}}
+
 " }}}
 
 " QFixHowm ==================== {{{1
@@ -1249,9 +1307,9 @@ vnoremap /r "xy;%s/<C-R>=escape(@x, '\\/.*$^~[]')<CR>//gc<Left><Left><Left>
 nnoremap <expr> s* ':%substitute/\<' . expand('<cword>') . '\>/'
 
 " Ctrl-iでヘルプ
-nnoremap <C-i>  :<C-u>help<Space>
+"nnoremap <C-i>  :<C-u>help<Space>
 " カーソル下のキーワードをヘルプでひく
-nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
+"nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 
 " :Gb <args> でGrepBufferする
 "command! -nargs=1 Gb :GrepBuffer <args>
