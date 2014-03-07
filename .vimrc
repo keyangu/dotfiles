@@ -94,6 +94,7 @@ NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'choplin/unite-vim-hacks'
 NeoBundle 'osyo-manga/unite-fold'
 NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'Shougo/neomru.vim'
 "}}}
 
 " ColorSchema{{{2
@@ -1009,11 +1010,11 @@ nnoremap <silent> [unite]o  :<C-u>Unite -silent outline -vertical -winwidth=40 -
 
 " unite grep に pt(The Platinum Searcher)を使う
 nnoremap <silent> [unite]g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
-if executable('pt')
-  let g:unite_source_grep_command = 'pt'
-  let g:unite_source_grep_default_ops = '--nogroup --nocolor'
-  let g:unite_source_grep_recursive_opt = ''
-endif
+"if executable('pt')
+"  let g:unite_source_grep_command = 'pt'
+"  let g:unite_source_grep_default_ops = '--nogroup --nocolor'
+"  let g:unite_source_grep_recursive_opt = ''
+"endif
 
 " from basyura/unite-rails
 " nnoremap <silent> [unite]rm  :<C-u>Unite -no-split rails/model<CR>
@@ -1022,6 +1023,28 @@ endif
 " nnoremap <silent> [unite]rl  :<C-u>Unite -no-split rails/lib<CR>
 " nnoremap <silent> [unite]rj  :<C-u>Unite -no-split rails/javascript<CR>
 " nnoremap <silent> [unite]rs  :<C-u>Unite -no-split rails/spec<CR>
+
+" post-grepで使えそうなものがあれば使う
+if executable('ag')
+  " Use ag in unite grep source.
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+  \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
+  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('pt')
+  " Use pt in unite grep source.
+  " https://github.com/monochromegane/the_platinum_searcher
+  let g:unite_source_grep_command = 'pt'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack-grep')
+  " Use ack in unite grep source.
+  let g:unite_source_grep_command = 'ack-grep'
+  let g:unite_source_grep_default_opts =
+  \ '--no-heading --no-color -k -H'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 
 
 autocmd FileType unite call s:unite_my_settings()
@@ -1152,6 +1175,10 @@ let g:quickrun_config = {
 	\		"outputter/error/success" : "buffer",
 	\		"outputter/error" : "quickfix",
 	\	},
+    \ "go" : {
+    \       "command" : "run",
+    \       "exec" : "go %c %s",
+    \   },
 	\}
 
 " <C-c> で実行を強制終了させる
