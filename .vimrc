@@ -4,6 +4,8 @@ augroup MyAutoCmd
 augroup END
 command! -nargs=* Autocmd autocmd MyAutoCmd <args>
 command! -nargs=* AutocmdFT autocmd FileType <args>
+
+set shellslash
 " }}}
 
 " NeoBundle {{{1 ====================
@@ -94,7 +96,7 @@ NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'choplin/unite-vim-hacks'
 NeoBundle 'osyo-manga/unite-fold'
 NeoBundle 'ujihisa/unite-colorscheme'
-NeoBundle 'Shougo/neomru.vim'
+"NeoBundle 'Shougo/neomru.vim'
 "}}}
 
 " ColorSchema{{{2
@@ -128,9 +130,6 @@ NeoBundle 'Shougo/neosnippet-snippets'
 
 " various langueages snippets
 NeoBundle 'honza/vim-snippets'
-
-" コンテキストによって自動的にファイルタイプが変わる
-NeoBundle 'Shougo/context_filetype.vim'
 
 " vimfiler
 NeoBundle 'Shougo/vimfiler.vim'
@@ -283,9 +282,15 @@ NeoBundle 'hrsh7th/vim-versions.git'
 " project.vim
 " NeoBundle 'project.vim'
 
+" コンテキストによって自動的にファイルタイプが変わる
+" コンテキストが切り替わった時にWORDの範囲指定がおかしくなるのでちょっと保留
+"NeoBundle 'Shougo/context_filetype.vim'
+
 " vim-precious
 " http://d.hatena.ne.jp/osyo-manga/20130612/1371046408
-NeoBundle 'osyo-manga/vim-precious'
+"NeoBundle 'osyo-manga/vim-precious'
+
+"NeoBundle 'osyo-manga/vim-anzu'
 
 filetype plugin indent on
 
@@ -339,8 +344,11 @@ command! Rv source $MYVIMRC
 Autocmd BufWritePost *vimrc source $MYVIMRC
 Autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 
+command! Cd cd %:h
+
 " 試してみたいことがあった時の.vimrc.trialを開く
 "command! Tv edit ~/dotfiles/.vimrc.trial
+
 " EDFvで~/dotfilesの編集
 command! EDFv edit ~/dotfiles
 
@@ -418,7 +426,10 @@ endif
 " カラー関連 Colors =================== {{{1
 " colorscheme
 colorscheme yuroyoro256
+
 "colorscheme codeschool
+"source ~/dotfiles/.vimrc.color
+"colorscheme keyangu256
 
 if &term =~ "xterm-256color" || "screen-256color"
 " 256色
@@ -486,18 +497,17 @@ let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 3
 " neocomplecacheを自動的にロックするバッファ名のパターン
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-" シンタックスをキャッシュするときの最小文字長を3に
-let g:neocomplcache_min_syntax_length = 3
+
 " -入力による候補番号の表示
 let g:neocomplcache_enable_quick_match = 1
 "ポップアップメニューで表示される候補の数。初期値は100
 let g:neocomplcache_max_list = 20
 
 " XXX 重いかもしれない設定
-		" camle caseを有効化。大文字を区切りとしたワイルドカードのように振る舞う
-		let g:neocomplcache_enable_camel_case_completion = 0
-		" _(アンダーバー)区切りの補完を有効化
-		let g:neocomplcache_enable_underbar_completion = 0
+	" camle caseを有効化。大文字を区切りとしたワイルドカードのように振る舞う
+	let g:neocomplcache_enable_camel_case_completion = 0
+	" _(アンダーバー)区切りの補完を有効化
+	let g:neocomplcache_enable_underbar_completion = 0
 
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
@@ -514,16 +524,16 @@ if !has('win32') && !has('win64')
 		\ 'c' : $HOME.'/.vim/dict/c.dict',
 		\ 'javascript' : $HOME.'/.vim/dict/javascript.dict',
 		\ 'vm' : $HOME.'/.vim/dict/vim.dict'
-			\ }
+		\ }
 else
 	let g:neocomplcache_dictionary_filetype_lists = {
 		\ 'default' : '',
-		\ 'vimshell' : $HOME.'/.vimshell_hist',
-		\ 'scheme' : $HOME.'/.gosh_completions',
-		\ 'c' : $HOME.'/vimfiles/dict/c.dict',
-		\ 'javascript' : $HOME.'/vimfiles/dict/javascript.dict',
-		\ 'vm' : $HOME.'/vimfiles/dict/vim.dict'
-			\ }
+		\ 'vimshell' : $HOME.'.vimshell_hist',
+		\ 'scheme' : $HOME.'.gosh_completions',
+		\ 'c' : $HOME.'vimfiles\dict\c.dict',
+		\ 'javascript' : $HOME.'vimfiles\dict\javascript.dict',
+		\ 'vm' : $HOME.'vimfiles\dict\vim.dict'
+		\ }
 endif
 
 "インクルードパスの指定
@@ -589,13 +599,13 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
-"if !exists('g:neocomplcache_force_omni_patterns')
-"  let g:neocomplcache_force_omni_patterns = {}
-"endif
+if !exists('g:neocomplcache_force_omni_patterns')
+  let g:neocomplcache_force_omni_patterns = {}
+endif
 "let g:neocomplcache_omni_patterns.php =
 "\ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-""let g:neocomplcache_omni_patterns.c =
-""\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+"let g:neocomplcache_omni_patterns.c =
+\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
 "let g:neocomplcache_omni_patterns.c =
 "\ '[^.[:digit:] *\t]\%(\.\)\%(\h\w*\)\?'
 "let g:neocomplcache_omni_patterns.cpp =
@@ -1138,7 +1148,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " Enable snipMate compatibility feature
 let g:neosnippet#enable_snipmate_compatibility = 1
 " Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets, ~/dotfiles/snippet'
+let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippets, ~/dotfiles/snippet'
 
 " }}}
 
@@ -1262,6 +1272,18 @@ let g:gist_post_private = 1
 " tagbar {{{
 nnoremap <F8> :TagbarToggle<CR>
 " }}}
+
+" vim-anzu {{{
+"nnoremap n <Plug>(anzu-n-with-echo)
+"nnoremap N <Plug>(anzu-N-with-echo)
+"nnoremap * <Plug>(anzu-star-with-echo)
+"nnoremap # <Plug>(anzu-sharp-with-echo)
+
+"nnoremap <Esc><Esc> <Plug>(anzu-clear-search-status)
+
+"set statusline=%{anzu#search_status()}
+
+"}}}
 
 " }}}
 
@@ -1444,8 +1466,7 @@ noremap : ;
 
 " }}}
 
-
-
+" memo {{{
 " insert mode でjjでesc
 "inoremap jj <Esc>
 " http://ac-mopp.blogspot.jp/2014/02/vimrc.html
@@ -1463,8 +1484,7 @@ noremap : ;
 " imap / inoremap |    -     |  @   |       -        |     -      |  -   |    -     |
 " cmap / cnoremap |    -     |  -   |       @        |     -      |  -   |    -     |
 "-----------------------------------------------------------------------------------"
-
-
+"}}}
 
 " Finally {{{1 ====================
 NeoBundleCheck
