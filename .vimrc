@@ -292,9 +292,14 @@ NeoBundle 'hrsh7th/vim-versions.git'
 
 "NeoBundle 'osyo-manga/vim-anzu'
 
+" threes
 NeoBundle 'thinca/vim-threes'
 
+" quickrunの拡張プラグイン
 NeoBundle 'osyo-manga/shabadou.vim'
+
+" メモ統合管理ツール
+NeoBundle 'fuenor/qfixhowm'
 
 filetype plugin indent on
 
@@ -337,6 +342,8 @@ set ttymouse=xterm2
 set helpheight=12               " helpウィンドウを開いた時の高さ
 set helpfile=$VIMRUNTIME/doc/help.txt
 set grepprg=pt " grepにptを使用する
+
+set undodir=~/vimfiles/undodir
 
 " 挿入モードでCtrl+pを押すとクリップボードの内容を貼り付けられるようにする
 " imap <C-p>  <ESC>"*pa
@@ -1431,15 +1438,13 @@ nnoremap <F8> :TagbarToggle<CR>
 
 " QFixHowm ==================== {{{1
 if has('win32') || has('win64')
-	" qfixappのパスを指定する
-	set runtimepath+=C:/Users/yanagi/noregprogram/qfixapp
 
-	" メモの保存先(DropBoxにしておくと同期できる)
+	" メモの保存先(Dropboxにしておくと同期できる)
 	let howm_dir              = '~/Dropbox/howm'
 	let howm_filename         = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
 
 	" 休日定義ファイル
-	let QFixHowm_HolidayFile  = '~/noregprogram/qfixapp/misc/holiday/Sche-Hd-0000-00-000000.utf8'
+	let QFixHowm_HolidayFile  = '~/vimfiles/bundle/qfixhowm/misc/holiday/Sche-Hd-0000-00-000000.utf8'
 
 	let mygrepprg             = 'agrep.vim'
 	" let mygrepprg             = 'pt'
