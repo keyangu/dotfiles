@@ -296,6 +296,11 @@ NeoBundle 'thinca/vim-threes'
 
 NeoBundle 'osyo-manga/shabadou.vim'
 
+NeoBundle 'fuenor/qfixhowm'
+
+" 任意にハイライトさせることができる
+NeoBundle 't9md/vim-quickhl'
+
 filetype plugin indent on
 
 " NeoBundle }}}
@@ -321,7 +326,7 @@ set showmode                     " 現在のモードを表示
 "set viminfo='50,<1000,s100,\"50  " viminfoファイルの設定
 "set modelines=0                  " モードラインは無効
 " cのポインタ参照("->")等でbellが鳴るので、bell関連の設定に注意
-set matchpairs& matchpairs+=<:> " カッコの組に<>を追加
+set matchpairs& matchpairs+=<:>  " カッコの組に<>を追加
 set noerrorbells " エラーメッセージに伴うベルを発生させない
 " 以下の設定をする場合は t_vbを.gvimrcに書かないと動作しないかも
 set visualbell t_vb=             " ビープをならさない, 画面フラッシュもしない
@@ -336,7 +341,8 @@ set ttymouse=xterm2
 
 set helpheight=12               " helpウィンドウを開いた時の高さ
 set helpfile=$VIMRUNTIME/doc/help.txt
-set grepprg=pt " grepにptを使用する
+set grepprg=pt                  " grepにptを使用する
+set undodir=~/vimfiles/undo     " undoファイルの作成先
 
 " 挿入モードでCtrl+pを押すとクリップボードの内容を貼り付けられるようにする
 " imap <C-p>  <ESC>"*pa
@@ -742,8 +748,8 @@ if !exists('g:neocomplete#force_omni_input_patterns')
 endif
 "let g:neocomplete#omni_patterns.php =
 "\ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-let g:neocomplete#sources#omni#input_patterns.c =
-\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+"let g:neocomplete#sources#omni#input_patterns.c =
+"\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
 "let g:neocomplete#omni_patterns.c =
 "\ '[^.[:digit:] *\t]\%(\.\)\%(\h\w*\)\?'
 "let g:neocomplete#omni_patterns.cpp =
@@ -1427,19 +1433,25 @@ nnoremap <F8> :TagbarToggle<CR>
 
 "}}}
 
+" {{{ vim-quickhl
+nmap <Space>m <Plug>(quickhl-manual-this)
+xmap <Space>m <Plug>(quickhl-manual-this)
+nmap <Space>M <Plug>(quickhl-manual-reset)
+xmap <Space>M <Plug>(quickhl-manual-reset)
+
+nmap <Space>j <Plug>(quickhl-cword-toggle)
+nmap <Space>] <Plug>(quickhl-tag-toggle)
+map H <Plug>(operator-quickhl-manual-this-motion)
+" }}}
+
 " }}}
 
 " QFixHowm ==================== {{{1
 if has('win32') || has('win64')
-	" qfixappのパスを指定する
-	set runtimepath+=C:/Users/yanagi/noregprogram/qfixapp
 
-	" メモの保存先(DropBoxにしておくと同期できる)
-	let howm_dir              = '~/Dropbox/howm'
+	" メモの保存先
+	let howm_dir              = 'W:/howm'
 	let howm_filename         = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
-
-	" 休日定義ファイル
-	let QFixHowm_HolidayFile  = '~/noregprogram/qfixapp/misc/holiday/Sche-Hd-0000-00-000000.utf8'
 
 	let mygrepprg             = 'agrep.vim'
 	" let mygrepprg             = 'pt'
@@ -1450,18 +1462,15 @@ if has('win32') || has('win64')
 
 elseif has('unix')
 
-	" qfixappのパスを指定する
-	set runtimepath+=~/data/qfixapp
-
-	" メモの保存先(DropBoxにしておくと同期できる)
-	let howm_dir              = '~/Dropbox/howm'
+	" メモの保存先
+	let howm_dir              = '~/data/howm'
 	let howm_filename         = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
-
-	" 休日定義ファイル
-	let QFixHowm_HolidayFile  = '~/data/qfixapp/misc/holiday/Sche-Hd-0000-00-000000.utf8'
 
 	let QFixHowm_OpenURIcmd = "call system('chromium-browser %s &')"
 endif
+
+" 休日定義ファイル
+let QFixHowm_HolidayFile  = '~/vimfiles/bundle/qfixhowm/misc/holiday/Sche-Hd-0000-00-000000.utf8'
 
 " キーマップリーダー
 let QFixHowm_Key = 'g'

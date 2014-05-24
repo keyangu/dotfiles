@@ -1,5 +1,12 @@
 if has('win32') || has('win64')
-  set guifont=Inconsolata:h10.5
+  " フォント名に日本語を使う場合、一時的に文字コードをcp932にする
+  set encoding=cp932
+  set guifont=Inconsolata:h11:w6
+  "set guifont=Consolas:h10.5
+  "set guifontwide=あずきフォント:h11:cSHIFTJIS
+  "set ambiwidth=double
+  " 文字コードを元に戻す
+  set encoding=utf-8
 else
   set guifont=Ricty\ for\ Powerline\ 10
   set guifontwide=Ricty\ 10
