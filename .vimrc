@@ -36,7 +36,7 @@ NeoBundle 'Shougo/vimproc', {
 
 " operator, textobj ==================== {{{2
 " vim-operator-user : 簡単にoperatorを定義できるようにする
-NeoBundle 'operator-user'
+NeoBundle 'kana/operator-user'
 
 " vim-operator-search : 範囲内の検索を行うoperator
 " http://d.hatena.ne.jp/osyo-manga/20131019/1382191487
@@ -46,7 +46,7 @@ NeoBundle 'osyo-manga/vim-operator-search'
 NeoBundle 'operator-camelize'
 
 " textobj-user : 簡単にVimエディタのテキストオブジェクトをつくれる
-NeoBundle 'textobj-user'
+NeoBundle 'kana/vim-textobj-user'
 
 " vim-textobj-plugins : いろんなものをtext-objectにする(obsolate)
 " NeoBundle 'thinca/vim-textobj-plugins.git'
@@ -59,7 +59,9 @@ NeoBundle 'kana/vim-textobj-syntax.git'
 " a/, i/, a?, i?
 NeoBundle 'kana/vim-textobj-lastpat.git'
 
-" vim-textobj-indent : インデントされたものをtext-objectに
+NeoBundle 'kana/textobj-line.git'
+
+" vim-textobj-indent : カーソルと同じ範囲のインデントをtext-objectに
 " ai, ii, aI, iI
 NeoBundle 'kana/vim-textobj-indent.git'
 
@@ -68,7 +70,7 @@ NeoBundle 'kana/vim-textobj-indent.git'
 NeoBundle 'kana/vim-textobj-function.git'
 
 " vim-textobj-fold : 折りたたまれたアレをtext-objectに
-NeoBundle 'kana/vim-textobj-fold.git'
+"NeoBundle 'kana/vim-textobj-fold.git'
 
 " NeoBundle 'textobj-rubyblock'
 
@@ -81,7 +83,7 @@ NeoBundle 'textobj-jabraces'
 
 " コメントの中身をtext-objectに
 " ac, ic
-" NeoBundle 'textobj-comment'
+"NeoBundle 'textobj-comment'
 
 " operator, textobj }}}
 
@@ -255,7 +257,7 @@ NeoBundle 'mattn/gist-vim'
 
 " ProjectLocal.vim
 " http://blog.supermomonga.com/articles/vim/projectlocal-vim-released.html
-"NeoBundle 'supermomonga/projectlocal.vim'
+NeoBundle 'supermomonga/projectlocal.vim'
 
 " hateblo.vim Vimからはてなブログの編集ができる
 NeoBundle 'moznion/hateblo.vim'
@@ -300,6 +302,24 @@ NeoBundle 'fuenor/qfixhowm'
 
 " 任意にハイライトさせることができる
 NeoBundle 't9md/vim-quickhl'
+
+" リスタートする
+NeoBundle 'tyru/restart.vim'
+
+" 'f'による移動を強化する
+NeoBundle 'rhysd/clever-f.vim'
+
+NeoBundle 'rbtnn/vimconsole.vim'
+
+NeoBundle 'vim-jp/vital.vim'
+
+" 自作プラグインのテスト
+"NeoBundle 'vim-keyatest'
+
+NeoBundle 'vim-keyatest', {
+\       'base' : '~/vimfiles/bundle',
+\       'type' : 'nosync',
+\   }
 
 filetype plugin indent on
 
@@ -1408,7 +1428,7 @@ let g:DrChipTopLvlMenu = ''
 nmap <Space>s <Plug>(operator-search)
 " 関数内の検索を行う
 " require - https://github.com/kana/vim-textobj-function
-nmap <Space>/ <Plug>(operator-search)if
+"nmap <Space>/ <Plug>(operator-search)if
 
 " }}}
 
@@ -1442,6 +1462,12 @@ xmap <Space>M <Plug>(quickhl-manual-reset)
 nmap <Space>j <Plug>(quickhl-cword-toggle)
 nmap <Space>] <Plug>(quickhl-tag-toggle)
 map H <Plug>(operator-quickhl-manual-this-motion)
+" }}}
+
+" {{{  restart-vim
+" :Restart したときに復元する内容
+let g:restart_sessionoptions
+    \ = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
 " }}}
 
 " }}}
@@ -1640,5 +1666,7 @@ noremap : ;
 " Finally {{{1 ====================
 NeoBundleCheck
 "}}}
+
+"source ~/dotfiles/.vimrc.test
 
 " vim: expandtab softtabstop=4 shiftwidth=4 foldmethod=marker
