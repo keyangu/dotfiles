@@ -1,0 +1,217 @@
+function! Hello()
+    " http://d.hatena.ne.jp/thinca/20100201/1265009821
+
+    echon 'Hello, '
+    echon 'world!'
+    let a = 1
+    let num = 1.234
+    let num = 12.0e-3
+
+    let num = 1 + 1
+    let num = 1 - 1
+    let num = 1 * 2
+    let num = 1 / 2
+
+    let num += 1
+    let num -= 1
+
+    let num = 3 % 2
+
+    let num = 3 / 2     " => 1 (整数同士の割り算は整数)
+    let num = 3 / 2.0
+
+    let str = "abc"
+    let str = 'def'
+    let str = "abc\ndef"
+    let str = 'That''s right!'
+
+    " 文字列操作
+    let join1 = 'aaa' . 'bbb' " 結合
+    let join2 = join(['aaa', 'bbb', 'ccc'], ',')
+
+    let record = split('aaa,bbb,ccc', ',')
+
+    let length = strlen('abcdef')
+
+    let substr = 'abcd'[1]
+    let substr = 'abcd'[0 : 1]
+    let substr = 'abcd'[ : 1]
+    let substr = 'abcd'[2 : ]
+    let substr = 'abcd'[1 : -1]
+
+    let result = stridx('abcd', 'cd')
+
+    " リスト
+    let list = [1, 2, 3]
+
+    let length = len(list)
+
+    let first = remove(list, 0)
+    let last = remove(list, -1)
+
+    call insert(list, 5, 0)
+
+    call add(list, 9)
+
+    " 辞書
+    let dict = {}
+    let dict = {'a': 1, 'b': 2}
+
+    let a = dict['a']
+    let b = dict.b
+
+    let dict['a'] = 10
+    let dict.c = 30
+
+    " 辞書操作
+    " 全キーをリストで取得
+    let keylist = keys(dict)
+
+    " すべての値をリストで取得
+    let valuelist = values(dict)
+
+    " すべてのキーと値を[[key, value], ...] のリストで取得
+    let itemlist = items(dict)
+
+    " キーの存在確認
+    let exists = has_key(dict, 'a')
+
+    " キーの削除
+    call remove(dict, 'a')
+
+    if 条件
+        " なんか
+    elseif 条件
+        " なんか
+    endif
+
+    let i = 0
+    while i < 5
+        let i += 1
+    endwhile
+
+    for e in [1, 2, 3]
+        echo e
+    endfor
+
+    " 比較演算子
+    " ==, !=, >, >=, <, <=
+    " 数値同士の場合は数値比較、文字列同士の場合は文字列比較
+    "
+    " 文字列と数値を比較した場合、文字列が数値に変換
+    "
+    " 文字列同士の比較で、大文字小文字の区別は 'ignorecase'オプション
+    " による
+    " オプションを無視するには以下
+    " ・大文字小文字を区別する
+    " ==#, !=#, >#, >=#, <#, <=#
+    " ・大文字小文字を無視する
+    " ==?
+    "
+    " 正規表現マッチ
+    " =~
+    " =~#
+    " =~?
+    "
+    " 正規表現非マッチ
+    " !~
+    " !~#
+    " !~?
+
+    " 同一性テスト
+    let res = 1 is '1'  " 0
+    let res = 1 is 1    " 1
+
+    " 論理演算子
+    let a = 10 || 0     " 1
+    let a = 10 && 5     " 1
+    let a = 10 && 0     " 0
+
+    " 条件演算子(三項演算子)
+    echo cond ? 'true' : 'false'
+
+    " 関数, '!'は同名の定義済みのものを上書き
+    function! Sum(v1, v2)
+        return a:v1 + a:v2
+    endfunction
+
+    " スクリプトローカルな関数
+    function! s:sum(v1, v2)
+        return a:v1 + a:v2
+    endfunction
+
+    " 可変長引数
+    " a:0   引数の数
+    " a:n   n番目の引数にアクセスする
+    " a:000 可変長引数のリスト
+    function! s:sum(v1, ...)
+        let num = a:v1
+        for i in a:000
+            let num += i
+        endfor
+        return num
+    endfunction
+
+    " ファイル入出力
+    " readfile() ファイルの中身を行区切りのリストで取得
+    for line in readfile(fname)
+        if line =~ 'Date'
+            echo line
+        endif
+    endfor
+
+    " writefile() 行区切りのリストをファイルに書き出す
+    call writefile(['line1', 'line2', 'line3'], fname)
+
+    " その他文法
+    " 真偽値が必要な場所では値は数値に変換され、0かそれ以外で判断
+    "
+    " 演算の特定の箇所では、値は暗黙的に適切な値に変換
+    "
+    " 値の再代入
+    " 元の値と新しい値が型変換可能でない場合、エラーになる
+    " その場合、:unletコマンドを使って変数を一旦削除する必要がある
+    let a = [1,2,3]
+    "let a = 1 " エラー！
+    unlet a " 一旦unlet
+    let a = 1
+
+    " 特に様々な値が入ったリストをforで回す場合に要注意
+    for i in [0, 1.1, ['list'], 'string']
+        echo i
+        unlet i
+    endfor
+
+    " 変数が定義されているかどうか
+    let e = exists('var1')
+
+    " 便利な関数
+    range(3) == [0, 1, 2]
+    range(1, 3) == [1, 2, 3]
+    range(1, 5, 2) == [1, 3, 5]
+
+    " 第一引数のリストの各要素を第二引数で渡した文字列を評価
+    " した結果が真になるもののみにフィルタリングする。
+    " 辞書を渡した場合は v:key でキー参照
+    " 渡したリスト自体が書き換えられる
+    map([1, 2, 3], 'v:val + 1') == [2, 3, 4]
+
+    " 例外処理
+    try
+        throw "エラーメッセージ"
+    catch /error/ " エラーメッセージにマッチする正規表現
+    catch
+        " ...例外処理...
+    finally
+        " 必ず行われる処理
+    endtry
+
+    " s:XXX スクリプトローカルの変数
+    " b:XXX バッファローカルの変数
+    " w:XXX ウィンドウローカル変数
+    " g:XXX グローバル変数(関数内では必須)
+    " v:XXX Vim が定義する変数
+
+endfunction
+
+
