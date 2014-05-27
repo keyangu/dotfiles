@@ -36,7 +36,7 @@ NeoBundle 'Shougo/vimproc', {
 
 " operator, textobj ==================== {{{2
 " vim-operator-user : 簡単にoperatorを定義できるようにする
-NeoBundle 'kana/operator-user'
+NeoBundle 'kana/vim-operator-user'
 
 " vim-operator-search : 範囲内の検索を行うoperator
 " http://d.hatena.ne.jp/osyo-manga/20131019/1382191487
@@ -70,7 +70,7 @@ NeoBundle 'kana/vim-textobj-indent.git'
 NeoBundle 'kana/vim-textobj-function.git'
 
 " vim-textobj-fold : 折りたたまれたアレをtext-objectに
-"NeoBundle 'kana/vim-textobj-fold.git'
+NeoBundle 'kana/vim-textobj-fold.git'
 
 " NeoBundle 'textobj-rubyblock'
 
@@ -83,7 +83,7 @@ NeoBundle 'textobj-jabraces'
 
 " コメントの中身をtext-objectに
 " ac, ic
-"NeoBundle 'textobj-comment'
+" NeoBundle 'textobj-comment'
 
 " operator, textobj }}}
 
@@ -376,10 +376,17 @@ set undodir=~/vimfiles/undodir
 " Ev/Rvでvimrcの編集と反映
 command! Ev edit $MYVIMRC
 command! Rv source $MYVIMRC
+" .vimrcを保存した時は読み込みし直す(.vimrcの規模にもよるがちょっと重い)
 Autocmd BufWritePost *vimrc source $MYVIMRC
+" .gvimrcを保存した時は読み込みし直す
 Autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 
+" Cd コマンドで現在開いているファイルのディレクトリに移動する
 command! Cd cd %:h
+
+" Bv で ~/vimfiles/bundle を開く
+command! Bv edit ~/vimfiles/bundle
+
 
 " 試してみたいことがあった時の.vimrc.trialを開く
 "command! Tv edit ~/dotfiles/.vimrc.trial
@@ -1138,6 +1145,25 @@ endfunction
 
 " プラグインごとの設定 Plugins ==================== {{{1
 
+"{{{ restart.vim
+
+"Restart時にg:restartedを1にしておく
+command! MyRestart Restart --cmd "let g:restarted = 1"
+abbreviate Rs MyRestart
+
+" 既存の環境変数にパスを足し込むなどの処理は、Restartする度に追加されてしまうので、
+" Restart時に変数を定義して、その変数があれば重複で処理しないようにする
+" http://d.hatena.ne.jp/osyo-manga/20130831/1377941465
+"
+" if exists("g:restarted")
+"   let $PATH = $PATH . ";hogehoge"
+" endif
+"
+let g:restart_sessionoptions
+    \ = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
+
+"}}}
+
 "------------------------------------
 " taglist.Vim {{{
 "------------------------------------
@@ -1433,7 +1459,7 @@ let g:DrChipTopLvlMenu = ''
 nmap <Space>s <Plug>(operator-search)
 " 関数内の検索を行う
 " require - https://github.com/kana/vim-textobj-function
-"nmap <Space>/ <Plug>(operator-search)if
+nmap <Space>/ <Plug>(operator-search)if
 
 " }}}
 
