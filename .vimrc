@@ -205,6 +205,7 @@ NeoBundle 'vim-scripts/gtags.vim'
 "NeoBundle 'minibufexpl.vim'
 
 " NERDTree : ツリー型エクスプローラ
+" vimfiler試用中なので休止
 "NeoBundle 'The-NERD-tree'
 
 " vimfiler
@@ -292,8 +293,10 @@ NeoBundle 'hrsh7th/vim-versions.git'
 
 "NeoBundle 'osyo-manga/vim-anzu'
 
+" threes
 NeoBundle 'thinca/vim-threes'
 
+" quickrunの拡張プラグイン
 NeoBundle 'osyo-manga/shabadou.vim'
 
 NeoBundle 'fuenor/qfixhowm'
@@ -343,6 +346,8 @@ set helpheight=12               " helpウィンドウを開いた時の高さ
 set helpfile=$VIMRUNTIME/doc/help.txt
 set grepprg=pt                  " grepにptを使用する
 set undodir=~/vimfiles/undo     " undoファイルの作成先
+
+set undodir=~/vimfiles/undodir
 
 " 挿入モードでCtrl+pを押すとクリップボードの内容を貼り付けられるようにする
 " imap <C-p>  <ESC>"*pa
@@ -1452,6 +1457,9 @@ if has('win32') || has('win64')
 	" メモの保存先
 	let howm_dir              = 'W:/howm'
 	let howm_filename         = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
+
+	" 休日定義ファイル
+	let QFixHowm_HolidayFile  = '~/vimfiles/bundle/qfixhowm/misc/holiday/Sche-Hd-0000-00-000000.utf8'
 
 	let mygrepprg             = 'agrep.vim'
 	" let mygrepprg             = 'pt'
