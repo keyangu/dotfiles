@@ -2,19 +2,16 @@ scriptencoding utf-8
 let s:save_cpo = &cpo
 set cpo&vim
 
-let s:time
+let s:V = vital#of('vital')
+let s:DateTime = s:V.import('DateTIme')
+"let s:Time = s:DateTime.now().unix_time()
 
 function! keyatest#init()
-    let s:V = vital#of('vital')
-
-    let s:DateTime = s:V.import('DateTIme')
-
-
-    s:time = 
+    let s:Time = s:DateTime.now().unix_time()
 endfunction
 
-
 function! keyatest#pdelta()
+    echo s:DateTime.now().unix_time() - s:Time
 endfunction
 
 
