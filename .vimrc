@@ -20,6 +20,7 @@ if has('vim_starting')
 endif
 
 " Let NeoBundle manage NeoBundle
+" NeoBundleをNeoBundleで管理する場合はNeoBundleFetch必須
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Recommended to install
@@ -61,7 +62,7 @@ NeoBundle 'kana/vim-textobj-lastpat.git'
 
 NeoBundle 'kana/textobj-line.git'
 
-" vim-textobj-indent : カーソルと同じ範囲のインデントをtext-objectに
+" vim-textobj-indent : インデントされたものをtext-objectに
 " ai, ii, aI, iI
 NeoBundle 'kana/vim-textobj-indent.git'
 
@@ -156,7 +157,7 @@ NeoBundle 'rhysd/unite-codic.vim'
 NeoBundle 'matchit.zip'
 
 " open-browser.vim : カーソルの下のURLを開くor単語を検索エンジンで検索
-"NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'tyru/open-browser.vim'
 
 " Pydiction : Python用入力補完
 NeoBundle 'rkulla/pydiction'
@@ -248,7 +249,7 @@ NeoBundle 'thinca/vim-ref'
 NeoBundle 'mattn/sonictemplate-vim'
 
 " vim-gocode
-"NeoBundle 'Blackrush/vim-gocode'
+NeoBundle 'Blackrush/vim-gocode'
 
 " webapi-vim
 NeoBundle 'mattn/webapi-vim'
@@ -315,6 +316,10 @@ NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'rbtnn/vimconsole.vim'
 
 NeoBundle 'vim-jp/vital.vim'
+
+NeoBundle 's3rvac/vim-syntax-redminewiki'
+
+NeoBundle 'rhysd/vim-go-impl'
 
 " 自作プラグインのテスト
 "NeoBundle 'vim-keyatest'
@@ -398,14 +403,16 @@ command! EDFv edit ~/dotfiles
 filetype plugin on
 
 " GoLangのpluginをruntime pathへ
-"if has('vim_starting')
-"    filetype off
-"    filetype plugin indent off
-    set rtp+=$GOROOT/misc/vim
-    exe "set rtp+=".globpath($GOPATH,  "src/github.com/nsf/gocode/vim")
-"    filetype plugin indent on
-"    syntax on
-"endif
+if has('vim_starting')
+    filetype off
+    filetype plugin indent off
+    if $GOROOT != ''
+        set rtp+=$GOROOT/misc/vim
+    endif
+    exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+    filetype plugin indent on
+    syntax on
+endif
 
 " SConstructファイルを開いた時にpythonで解釈する
 au BufRead,BufNewFile SConstruct set filetype=python
@@ -854,7 +861,8 @@ nmap yk y^
 nnoremap <silent> <C-d> d0
 
 " ノーマルモードでEnterを押すと改行挿入
-nnoremap <CR> o<ESC>
+" 大して使ってないし、QFで<CR>しても :.cc してくれないので削除
+"nnoremap <CR> o<ESC>
 
 " カーソルから行頭まで削除(インサートモード)
 inoremap <silent> <C-k> <Esc>lc^
@@ -1011,7 +1019,7 @@ if has("autocmd")
   autocmd FileType go         setlocal sw=4 sts=4 ts=4
   autocmd FileType html       setlocal sw=2 sts=2 ts=2
   autocmd FileType java       setlocal sw=4 sts=4 ts=4
-  autocmd FileType javascript setlocal sw=2 sts=2 ts=2
+  autocmd FileType javascript setlocal sw=4 sts=4 ts=4
   autocmd FileType perl       setlocal sw=4 sts=4 ts=4
   autocmd FileType php        setlocal sw=4 sts=4 ts=4
   autocmd FileType python     setlocal sw=4 sts=4 ts=4
@@ -1211,7 +1219,7 @@ nnoremap <silent> [unite]s  :<C-u>Unite snippet<CR>
 let g:unite_source_history_yank_enable = 1
 nnoremap <silent> [unite]y  :<C-u>Unite -silent history/yank<CR>
 " Line
-nnoremap <silent> g/        :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
+nnoremap <silent> [unite]/        :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
 
 " unite plugin setting {{{
 " unite-outline
@@ -1667,6 +1675,18 @@ else
   set tags=./tags,./../tags,./*/tags,./../../tags,./../../../tags,./../../../../tags,./../../../../../tags
 endif
 
+" }}}
+
+" 独自コマンド定義 Command {{{1
+command! OpenBrowserCurrent execute "OpenBrowser" expand("%:p")
+
+function! OpenModifiableQF()
+    cw
+    set modifiable
+    set nowrap
+endfunction
+
+autocmd QuickfixCmdPost vimgrep call OpenModifiableQF()
 " }}}
 
 " その他 Misc ==================== {{{1

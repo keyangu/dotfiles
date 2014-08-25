@@ -2,6 +2,7 @@ if has('win32') || has('win64')
   " フォント名に日本語を使う場合、一時的に文字コードをcp932にする
   set encoding=cp932
   set guifont=Inconsolata:h11:w6
+  "set guifont=Ricty:h12
   "set guifont=Consolas:h10.5
   "set guifontwide=あずきフォント:h11:cSHIFTJIS
   "set ambiwidth=double
