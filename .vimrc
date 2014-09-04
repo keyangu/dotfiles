@@ -3,7 +3,7 @@ augroup MyAutoCmd
     autocmd!
 augroup END
 command! -nargs=* Autocmd autocmd MyAutoCmd <args>
-command! -nargs=* AutocmdFT autocmd FileType <args>
+command! -nargs=* AutocmdFT autocmd MyAutoCmd FileType <args>
 
 set shellslash
 " }}}
@@ -185,6 +185,13 @@ NeoBundle 'scrooloose/syntastic'
 " エラーがある場所をhilight
 " NeoBundle 'errormarker.vim'
 "}}}
+
+" coffeescript {{{
+" syntax + 自動コンパイル
+NeoBundle 'kchmck/vim-coffee-script'
+" js BDDツール
+"NeoBundle 'claco/jasmine.vim'
+" }}}
 
 " vimからGit操作する
 "NeoBundle 'tpope/vim-fugitive'
@@ -416,6 +423,8 @@ endif
 
 " SConstructファイルを開いた時にpythonで解釈する
 au BufRead,BufNewFile SConstruct set filetype=python
+" coffeescript判定
+au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 
 "Gtags(global)を使用するためのショートカット
 map <C-g> :Gtags
@@ -441,9 +450,9 @@ match ZenkakuSpace /　/
 "set cursorline
 " カレントウィンドウにのみ罫線を引く
 "augroup cch
-"  autocmd! cch
-"  autocmd WinLeave * set nocursorline
-"  autocmd WinEnter,BufRead * set cursorline
+"  Autocmd! cch
+"  Autocmd WinLeave * set nocursorline
+"  Autocmd WinEnter,BufRead * set cursorline
 "augroup END
 
 hi clear CursorLine
@@ -638,11 +647,11 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"AutocmdFT css setlocal omnifunc=csscomplete#CompleteCSS
+"AutocmdFT html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"AutocmdFT javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"AutocmdFT python setlocal omnifunc=pythoncomplete#Complete
+"AutocmdFT xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
 if !exists('g:neocomplcache_omni_patterns')
@@ -772,11 +781,11 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 set completeopt& completeopt=menuone
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+AutocmdFT css setlocal omnifunc=csscomplete#CompleteCSS
+AutocmdFT html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+AutocmdFT javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+AutocmdFT python setlocal omnifunc=pythoncomplete#Complete
+AutocmdFT xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -835,10 +844,7 @@ nmap ye ;let @"=expand("<cword>")<CR>
 " inoremap , ,<Space>
 
 " XMLの閉タグを自動挿入
-"augroup MyXML
-"  autocmd!
-"  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-"augroup END
+" AutocmdFT Filetype xml inoremap <buffer> </ </<C-x><C-o>
 
 "  Insert mode中で単語単位/行単位の削除をアンドゥ可能にする
 inoremap <C-u>  <C-g>u<C-u>
@@ -887,9 +893,9 @@ inoremap <silent> <C-y>0 <Esc>ly$<Insert>
 "vnoremap ' "zdi'<C-R>z'<ESC>
 
 " 保存時に行末の空白を除去する
-" autocmd BufWritePre * :%s/\s\+$//ge
+" Autocmd BufWritePre * :%s/\s\+$//ge
 " 保存時にtabをスペースに変換する
-" autocmd BufWritePre * :%s/\t/  /ge
+" Autocmd BufWritePre * :%s/\t/  /ge
 
 " 日時の自動入力
 inoremap <expr> ,df strftime('%Y/%m/%d %H:%M:%S')
@@ -904,15 +910,15 @@ cnoremap <expr> <C-X>dt strftime('%Y%m%d')
 " 折りたたみは全て展開した状態で開始する
 " set foldlevelstart=99
 " .vimはmarker
-" autocmd FileType vim :set foldmethod=marker
+" AutocmdFT vim :set foldmethod=marker
 
 " <leader>j でJSONをformat
 " http://wozozo.hatenablog.com/entry/2012/02/08/121504
 "map <Leader>j !python -m json.tool<CR>
 
 " quickfixウィンドウではq/ESCで閉じる
-"autocmd FileType qf nnoremap <buffer> q :ccl<CR>
-"autocmd FileType qf nnoremap <buffer> <ESC> :ccl<CR>
+"AutocmdFT qf nnoremap <buffer> q :ccl<CR>
+"AutocmdFT qf nnoremap <buffer> <ESC> :ccl<CR>
 
 "" cwでquickfixウィンドウの表示をtoggleするようにした
 "function! s:toggle_qf_window()
@@ -963,16 +969,16 @@ else
 endif
 
 " cvsの時は文字コードをeuc-jpに設定
-"autocmd FileType cvs :set fileencoding=euc-jp
+"AutocmdFT cvs :set fileencoding=euc-jp
 " 以下のファイルの時は文字コードをutf-8に設定
-"autocmd FileType svn :set fileencoding=utf-8
-"autocmd FileType js :set fileencoding=utf-8
-"autocmd FileType css :set fileencoding=utf-8
-"autocmd FileType html :set fileencoding=utf-8
-"autocmd FileType xml :set fileencoding=utf-8
-"autocmd FileType java :set fileencoding=utf-8
-"autocmd FileType scala :set fileencoding=utf-8
-autocmd FileType go :set fileencoding=utf-8
+"AutocmdFT svn :set fileencoding=utf-8
+"AutocmdFT js :set fileencoding=utf-8
+"AutocmdFT css :set fileencoding=utf-8
+"AutocmdFT html :set fileencoding=utf-8
+"AutocmdFT xml :set fileencoding=utf-8
+"AutocmdFT java :set fileencoding=utf-8
+"AutocmdFT scala :set fileencoding=utf-8
+AutocmdFT go :set fileencoding=utf-8
 
 " ワイルドカードで表示するときに優先度を低くする拡張子
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
@@ -1000,42 +1006,41 @@ set cindent      " Cプログラムファイルの自動インデントを始め
 " softtabstopはTabキー押し下げ時の挿入される空白の量，0の場合はtabstopと同じ，BSにも影響する
 "set tabstop=2 shiftwidth=2 softtabstop=0
 
-if has("autocmd")
-  "ファイルタイプの検索を有効にする
-  filetype plugin on
-  "そのファイルタイプにあわせたインデントを利用する
-  filetype indent on
-  " これらのftではインデントを無効に
-  "autocmd FileType php filetype indent off
+"ファイルタイプの検索を有効にする
+filetype plugin on
+"そのファイルタイプにあわせたインデントを利用する
+filetype indent on
+" これらのftではインデントを無効に
+"AutocmdFT php filetype indent off
 
-  autocmd FileType apache     setlocal sw=4 sts=4 ts=4
-  autocmd FileType aspvbs     setlocal sw=4 sts=4 ts=4
-  autocmd FileType c          setlocal sw=4 sts=4 ts=4
-  autocmd FileType cpp        setlocal sw=4 sts=4 ts=4
-  autocmd FileType cs         setlocal sw=4 sts=4 ts=4
-  autocmd FileType css        setlocal sw=2 sts=2 ts=2
-  autocmd FileType diff       setlocal sw=4 sts=4 ts=4
-  autocmd FileType eruby      setlocal sw=4 sts=4 ts=4
-  autocmd FileType go         setlocal sw=4 sts=4 ts=4
-  autocmd FileType html       setlocal sw=2 sts=2 ts=2
-  autocmd FileType java       setlocal sw=4 sts=4 ts=4
-  autocmd FileType javascript setlocal sw=4 sts=4 ts=4 expandtab
-  autocmd FileType perl       setlocal sw=4 sts=4 ts=4
-  autocmd FileType php        setlocal sw=4 sts=4 ts=4
-  autocmd FileType python     setlocal sw=4 sts=4 ts=4
-  autocmd FileType ruby       setlocal sw=2 sts=2 ts=2
-  autocmd FileType haml       setlocal sw=2 sts=2 ts=2
-  autocmd FileType sh         setlocal sw=4 sts=4 ts=4
-  autocmd FileType sql        setlocal sw=4 sts=4 ts=4
-  autocmd FileType vb         setlocal sw=4 sts=4 ts=4
-  autocmd FileType vim        setlocal sw=4 sts=4 ts=4 expandtab
-  autocmd FileType wsh        setlocal sw=4 sts=4 ts=4
-  autocmd FileType xhtml      setlocal sw=4 sts=4 ts=4
-  autocmd FileType xml        setlocal sw=4 sts=4 ts=4
-  autocmd FileType yaml       setlocal sw=2 sts=2 ts=2
-  autocmd FileType zsh        setlocal sw=4 sts=4 ts=4
-  autocmd FileType scala      setlocal sw=2 sts=2 ts=2
-endif
+AutocmdFT apache     setlocal sw=4 sts=4 ts=4
+AutocmdFT aspvbs     setlocal sw=4 sts=4 ts=4
+AutocmdFT c          setlocal sw=4 sts=4 ts=4
+AutocmdFT cpp        setlocal sw=4 sts=4 ts=4
+AutocmdFT cs         setlocal sw=4 sts=4 ts=4
+AutocmdFT css        setlocal sw=2 sts=2 ts=2
+AutocmdFT diff       setlocal sw=4 sts=4 ts=4
+AutocmdFT eruby      setlocal sw=4 sts=4 ts=4
+AutocmdFT go         setlocal sw=4 sts=4 ts=4
+AutocmdFT html       setlocal sw=2 sts=2 ts=2
+AutocmdFT java       setlocal sw=4 sts=4 ts=4
+AutocmdFT javascript setlocal sw=4 sts=4 ts=4 expandtab
+AutocmdFT coffee     setlocal sw=4 sts=4 ts=4 expandtab
+AutocmdFT perl       setlocal sw=4 sts=4 ts=4
+AutocmdFT php        setlocal sw=4 sts=4 ts=4
+AutocmdFT python     setlocal sw=4 sts=4 ts=4
+AutocmdFT ruby       setlocal sw=2 sts=2 ts=2
+AutocmdFT haml       setlocal sw=2 sts=2 ts=2
+AutocmdFT sh         setlocal sw=4 sts=4 ts=4
+AutocmdFT sql        setlocal sw=4 sts=4 ts=4
+AutocmdFT vb         setlocal sw=4 sts=4 ts=4
+AutocmdFT vim        setlocal sw=4 sts=4 ts=4 expandtab
+AutocmdFT wsh        setlocal sw=4 sts=4 ts=4
+AutocmdFT xhtml      setlocal sw=4 sts=4 ts=4
+AutocmdFT xml        setlocal sw=4 sts=4 ts=4
+AutocmdFT yaml       setlocal sw=2 sts=2 ts=2
+AutocmdFT zsh        setlocal sw=4 sts=4 ts=4
+AutocmdFT scala      setlocal sw=2 sts=2 ts=2
 
 " indent }}}
 
@@ -1094,7 +1099,7 @@ map <kPlus> <C-W>+
 map <kMinus> <C-W>-
 
 " 前回終了したカーソル行に移動
-autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
+Autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
 " 最後に編集された位置に移動
 nnoremap gb '[
@@ -1265,7 +1270,7 @@ elseif executable('ack-grep')
 endif
 
 
-autocmd FileType unite call s:unite_my_settings()
+AutocmdFT unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
   " Overwrite settings.
 
@@ -1367,8 +1372,8 @@ nnoremap <silent> <Space>id :<C-u>IndentGuidesToggle<Enter>
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 4
 let g:indent_guides_guide_size = 1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red ctermbg=3
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+Autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red ctermbg=3
+Autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 if 'dark' == &background
     hi IndentGuidesOdd  ctermbg=black
     hi IndentGuidesEven ctermbg=darkgrey
@@ -1516,6 +1521,11 @@ map H <Plug>(operator-quickhl-manual-this-motion)
 " :Restart したときに復元する内容
 let g:restart_sessionoptions
     \ = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
+" }}}
+
+" {{{  vim-coffee-script
+" 保存時に自動でコンパイル
+Autocmd BufWritePost *.coffee silent make!
 " }}}
 
 " }}}
@@ -1669,8 +1679,8 @@ endif
 "let g:Powerline_symbols = 'fancy'
 
 "自動的に QuickFix リストを表示する
-autocmd QuickfixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
-autocmd QuickfixCmdPost lmake,lgrep,lgrepadd,lvimgrep,lvimgrepadd lwin
+Autocmd QuickfixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
+Autocmd QuickfixCmdPost lmake,lgrep,lgrepadd,lvimgrep,lvimgrepadd lwin
 
 " }}}
 
@@ -1695,7 +1705,7 @@ function! OpenModifiableQF()
     set nowrap
 endfunction
 
-autocmd QuickfixCmdPost vimgrep call OpenModifiableQF()
+Autocmd QuickfixCmdPost vimgrep call OpenModifiableQF()
 " }}}
 
 " その他 Misc ==================== {{{1
