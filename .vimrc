@@ -180,7 +180,7 @@ NeoBundle 'rkulla/pydiction'
 NeoBundle 'thinca/vim-quickrun'
 
 " syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
-"NeoBundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/syntastic'
 
 " エラーがある場所をhilight
 " NeoBundle 'errormarker.vim'
@@ -1019,7 +1019,7 @@ if has("autocmd")
   autocmd FileType go         setlocal sw=4 sts=4 ts=4
   autocmd FileType html       setlocal sw=2 sts=2 ts=2
   autocmd FileType java       setlocal sw=4 sts=4 ts=4
-  autocmd FileType javascript setlocal sw=4 sts=4 ts=4
+  autocmd FileType javascript setlocal sw=4 sts=4 ts=4 expandtab
   autocmd FileType perl       setlocal sw=4 sts=4 ts=4
   autocmd FileType php        setlocal sw=4 sts=4 ts=4
   autocmd FileType python     setlocal sw=4 sts=4 ts=4
@@ -1429,20 +1429,29 @@ endif
 "------------------------------------
 " Syntastic {{{
 "------------------------------------
-" Syntasticを自動で実行しないようにする
+" ファイルを開いた時はチェックしない
+let g:syntastic_check_on_open = 0
+" 保存時はチェック
+let g:syntastic_check_on_save = 1
+" sytastic_mode_map
 let g:syntastic_mode_map = { 'mode' : 'passive',
-			\ 'active_filetypes' : [],
+			\ 'active_filetypes' : ['javascript'],
 			\ 'passive_filetypes' : []
 			\}
 " エラー行をsignで表示する
 let g:syntastic_enable_signs = 1
 " 可能ならhighligt表示する
 let g:syntastic_enable_highlighting = 1
-" 自動的に開いたり閉じたりする
+" エラーがあったら自動的にロケーションリスト開いたり閉じたりする
 let g:syntastic_auto_loc_list=1
+" エラー時のロケーションリストの高さ
+let g:syntastic_loc_list_height = 6
 
 " C言語はgccで構文解析
 "let g:syntastic_c_checkers = ['gcc']
+
+" Javascriptはjshintを使う
+let g:syntastic_javascript_checkers = ['jshint']
 
 " :Synで:SyntasticCheckコマンドを実行
 command! Syn SyntasticCheck
