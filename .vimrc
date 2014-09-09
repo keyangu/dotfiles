@@ -194,7 +194,10 @@ NeoBundle 'kchmck/vim-coffee-script'
 " }}}
 
 " vimからGit操作する
-"NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive'
+
+" 様々な移動を '[', ']' + キーで行う
+NeoBundle 'tpope/vim-unimpaired'
 
 " git-vim: Plugin files for calling git functions from inside Vim and Syntax files for git displays
 "NeoBundle 'motemen/git-vim'
@@ -427,11 +430,11 @@ au BufRead,BufNewFile SConstruct set filetype=python
 au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 
 "Gtags(global)を使用するためのショートカット
-map <C-g> :Gtags
-map <C-i> :Gtags -f %<CR>
-map <C-j> :GtagsCursor<CR>
-map <C-n> :cn<CR>
-map <C-p> :cp<CR>
+nnoremap <C-g> :Gtags
+nnoremap <C-i> :Gtags -f %<CR>
+nnoremap <C-@> :GtagsCursor<CR>
+"map <C-n> :cn<CR>
+"map <C-p> :cp<CR>
 
 " }}}
 
@@ -972,9 +975,10 @@ endif
 "AutocmdFT cvs :set fileencoding=euc-jp
 " 以下のファイルの時は文字コードをutf-8に設定
 "AutocmdFT svn :set fileencoding=utf-8
-"AutocmdFT js :set fileencoding=utf-8
-"AutocmdFT css :set fileencoding=utf-8
-"AutocmdFT html :set fileencoding=utf-8
+AutocmdFT js :set fileencoding=utf-8
+AutocmdFT coffee :set fileencoding=utf-8
+AutocmdFT css :set fileencoding=utf-8
+AutocmdFT html :set fileencoding=utf-8
 "AutocmdFT xml :set fileencoding=utf-8
 "AutocmdFT java :set fileencoding=utf-8
 "AutocmdFT scala :set fileencoding=utf-8
@@ -1440,7 +1444,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_save = 1
 " sytastic_mode_map
 let g:syntastic_mode_map = { 'mode' : 'passive',
-			\ 'active_filetypes' : ['javascript'],
+			\ 'active_filetypes' : ['javascript', 'go'],
 			\ 'passive_filetypes' : []
 			\}
 " エラー行をsignで表示する
@@ -1453,8 +1457,7 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height = 6
 
 " C言語はgccで構文解析
-"let g:syntastic_c_checkers = ['gcc']
-
+" let g:syntastic_c_checkers = ['gcc']
 " Javascriptはjshintを使う
 let g:syntastic_javascript_checkers = ['jshint']
 

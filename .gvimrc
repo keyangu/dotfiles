@@ -62,4 +62,5 @@ hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg
 set t_vb=
 
 " メニューとツールアイコンを非表示にする
-set guioptions& guioptions-=Tm
+set guioptions-=T
+set guioptions-=m
