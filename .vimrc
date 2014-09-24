@@ -1531,6 +1531,11 @@ let g:restart_sessionoptions
 Autocmd BufWritePost *.coffee silent make!
 " }}}
 
+" {{{ VimFiler
+" VimFilerを規定のファイラにする
+let g:vimfiler_as_default_explorer=1
+" }}}
+
 " }}}
 
 " QFixHowm ==================== {{{1
