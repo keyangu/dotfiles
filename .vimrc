@@ -287,9 +287,6 @@ NeoBundle 'https://github.com/motemen/hatena-vim'
 " Excite翻訳で日<-->英翻訳する
 NeoBundle 'mattn/excitetranslate-vim'
 
-" Tagbar
-"NeoBundle 'majutsushi/tagbar'
-
 " vim-versions
 NeoBundle 'hrsh7th/vim-versions.git'
 
@@ -330,6 +327,30 @@ NeoBundle 'vim-jp/vital.vim'
 NeoBundle 's3rvac/vim-syntax-redminewiki'
 
 NeoBundle 'rhysd/vim-go-impl'
+
+NeoBundleLazy 'majutsushi/tagbar' , {
+    \ 'autoload': {
+    \   'commands': ['TagbarToggle'],
+    \ }}
+
+NeoBundleLazy 'davidhalter/jedi-vim', {
+    \ 'autoload': {
+    \   'filetypes': ['python', 'python3', 'djangohtml'],
+    \ },
+    \ 'build': {
+    \   'windows': 'pip install jedi',
+    \   'unix': 'pip install jedi',
+    \ }}
+let s:hooks = neobundle#get_hooks('jedi-vim')
+function! s:hooks.on_source(bundle)
+    let g:jedi#auto_vim_configuration = 0
+    " 補完の最初の項目は選択しない
+    let g:jedi#popup_select_first = 0
+    " quickrun回避
+    let g:jedi#rename_command = '<Leader>R'
+    " gundo回避
+    let g:jedi#goto_command = '<Leader>G'
+endfunction
 
 " 自作プラグインのテスト
 "NeoBundle 'vim-keyatest'
