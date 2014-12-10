@@ -135,7 +135,13 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
 
 " vimfiler
-NeoBundle 'Shougo/vimfiler.vim'
+NeoBundleLazy 'Shougo/vimfiler.vim', {
+    \ 'depends': ['Shougo/unite.vim'],
+    \ 'autoload': {
+    \   'commands': ['VimFilerTab', 'VimFiler', 'VimFilerExplorer'],
+    \   'mappings': ['<Plug>(vimfiler_switch)'],
+    \   'explore': 1,
+    \ }}
 
 " sonictemplate-vim
 NeoBundle 'mattn/sonictemplate-vim'
@@ -216,13 +222,6 @@ NeoBundle 'vim-scripts/gtags.vim'
 
 " minibufexpl.vim : タブエディタ風にバッファ管理ウィンドウを表示
 "NeoBundle 'minibufexpl.vim'
-
-" NERDTree : ツリー型エクスプローラ
-" vimfiler試用中なので休止
-"NeoBundle 'The-NERD-tree'
-
-" vimfiler
-NeoBundle 'Shougo/vimfiler.vim'
 
 " 最新のnetrwが使いづらすぎるので136に固定
 " VimFilerに慣れたら移行
@@ -1555,6 +1554,7 @@ Autocmd BufWritePost *.coffee silent make!
 " {{{ VimFiler
 " VimFilerを規定のファイラにする
 let g:vimfiler_as_default_explorer=1
+nnoremap <Leader>e :VimFilerExplorer<CR>
 " }}}
 
 " }}}
