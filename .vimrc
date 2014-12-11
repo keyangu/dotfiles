@@ -166,7 +166,7 @@ NeoBundle 'matchit.zip'
 NeoBundle 'tyru/open-browser.vim'
 
 " Pydiction : Python用入力補完
-NeoBundle 'rkulla/pydiction'
+"NeoBundle 'rkulla/pydiction'
 
 " GoLang
 " GoのVimプラギンをNeoBundleで管理する - 四角革命前夜
@@ -342,14 +342,20 @@ NeoBundleLazy 'davidhalter/jedi-vim', {
     \ }}
 let s:hooks = neobundle#get_hooks('jedi-vim')
 function! s:hooks.on_source(bundle)
+    " Jedi-vimに勝手に設定を変えさせない
     let g:jedi#auto_vim_configuration = 0
     " 補完の最初の項目は選択しない
     let g:jedi#popup_select_first = 0
     " quickrun回避
     let g:jedi#rename_command = '<Leader>R'
     " gundo回避
-    let g:jedi#goto_command = '<Leader>G'
+    let g:jedi#goto_assignments_command = '<Leader>G'
 endfunction
+
+NeoBundleLazy 'vim-scripts/TaskList.vim', {
+    \ 'autoload': {
+    \   'mappings': ['<Plug>TaskList'],
+    \ }}
 
 " 自作プラグインのテスト
 "NeoBundle 'vim-keyatest'
@@ -719,7 +725,7 @@ if !has('win32') && !has('win64')
 		\ 'scheme' : $HOME.'/.gosh_completions',
 		\ 'c' : $HOME.'/.vim/dict/c.dict',
 		\ 'javascript' : $HOME.'/.vim/dict/javascript.dict',
-		\ 'vm' : $HOME.'/.vim/dict/vim.dict'
+		\ 'vim' : $HOME.'/.vim/dict/vim.dict'
 		\ }
 else
 	let g:neocomplete#sources#dictionary#dictionaries = {
@@ -728,7 +734,7 @@ else
 		\ 'scheme' : $HOME.'.gosh_completions',
 		\ 'c' : $HOME.'vimfiles\dict\c.dict',
 		\ 'javascript' : $HOME.'vimfiles\dict\javascript.dict',
-		\ 'vm' : $HOME.'vimfiles\dict\vim.dict'
+		\ 'vim' : $HOME.'vimfiles\dict\vim.dict'
 		\ }
 endif
 
@@ -807,7 +813,8 @@ set completeopt& completeopt=menuone
 AutocmdFT css setlocal omnifunc=csscomplete#CompleteCSS
 AutocmdFT html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 AutocmdFT javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-AutocmdFT python setlocal omnifunc=pythoncomplete#Complete
+" pythonはjediの補完関数を使う
+"AutocmdFT python setlocal omnifunc=pythoncomplete#Complete
 AutocmdFT xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
@@ -836,6 +843,22 @@ let g:neocomplete#sources#omni#input_patterns.go =
 \ '[^.[:digit:] *\t]\.\w*'
 
 " NeoComplete }}}
+
+" Jedi-vimとNeoCompleteの連携設定 {{{
+" オムニ補完時に最初の候補を自動選択しないようにしたい
+" http://dackdive.hateblo.jp/entry/2014/08/13/130000
+" http://kozo2.hatenablog.com/entry/2014/01/22/050714
+AutocmdFT python setlocal omnifunc=jedi#completions
+let g:jedi#completions_enabled = 0
+" let g:jedi#auto_vim_configuration = 0
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+" let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+" }}}
 
 " Complete }}}
 
@@ -1052,7 +1075,7 @@ AutocmdFT javascript setlocal sw=4 sts=4 ts=4 expandtab
 AutocmdFT coffee     setlocal sw=4 sts=4 ts=4 expandtab
 AutocmdFT perl       setlocal sw=4 sts=4 ts=4
 AutocmdFT php        setlocal sw=4 sts=4 ts=4
-AutocmdFT python     setlocal sw=4 sts=4 ts=4
+AutocmdFT python     setlocal sw=4 sts=4 ts=4 noexpandtab
 AutocmdFT ruby       setlocal sw=2 sts=2 ts=2
 AutocmdFT haml       setlocal sw=2 sts=2 ts=2
 AutocmdFT sh         setlocal sw=4 sts=4 ts=4
@@ -1555,6 +1578,10 @@ Autocmd BufWritePost *.coffee silent make!
 " VimFilerを規定のファイラにする
 let g:vimfiler_as_default_explorer=1
 nnoremap <Leader>e :VimFilerExplorer<CR>
+" }}}
+
+" {{{ TaskList
+nmap <Leader>k <Plug>TaskList
 " }}}
 
 " }}}
