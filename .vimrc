@@ -10,6 +10,7 @@ set shellslash
 
 " NeoBundle {{{1 ====================
 if has('vim_starting')
+    set nocompatible
     if has('win32') || has('win64')
         set runtimepath+=~/vimfiles/bundle/neobundle.vim/
         call neobundle#rc(expand('~/vimfiles/bundle/'))
@@ -22,6 +23,9 @@ endif
 " Let NeoBundle manage NeoBundle
 " NeoBundleをNeoBundleで管理する場合はNeoBundleFetch必須
 NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Use neobundle standard recipes.
+NeoBundle 'Shougo/neobundle-vim-recipes'
 
 " Recommended to install
 " After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
@@ -135,13 +139,9 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
 
 " vimfiler
-NeoBundleLazy 'Shougo/vimfiler.vim', {
+NeoBundle 'Shougo/vimfiler.vim', {
     \ 'depends': ['Shougo/unite.vim'],
-    \ 'autoload': {
-    \   'commands': ['VimFilerTab', 'VimFiler', 'VimFilerExplorer'],
-    \   'mappings': ['<Plug>(vimfiler_switch)'],
-    \   'explore': 1,
-    \ }}
+    \ }
 
 " sonictemplate-vim
 NeoBundle 'mattn/sonictemplate-vim'
@@ -367,6 +367,14 @@ NeoBundle 'vim-keyatest', {
 
 filetype plugin indent on
 
+" Installation check.
+NeoBundleCheck
+
+if !has('vim_starting')
+  " Call on_source hook when reloading .vimrc.
+  call neobundle#call_hook('on_source')
+endif
+
 " NeoBundle }}}
 
 " Basic Options ==================== {{{1
@@ -434,6 +442,12 @@ command! Bv edit ~/vimfiles/bundle
 
 " EDFvで~/dotfilesの編集
 command! EDFv edit ~/dotfiles
+
+" <Leader>t + ? で各種設定をトグル
+nnoremap [toggle] <Nop>
+nmap <Leader>t [toggle]
+nnoremap <silent> [toggle]t :setl expandtab!<CR>:setl expandtab?<CR>
+nnoremap <silent> [toggle]w :setl wrap!<CR>:setl wrap?<CR>
 
 " ファイルタイプ判定をon
 filetype plugin on
@@ -856,8 +870,8 @@ if !exists('g:neocomplete#force_omni_input_patterns')
     let g:neocomplete#force_omni_input_patterns = {}
 endif
 
-" let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+"let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 " }}}
 
 " Complete }}}
@@ -1578,6 +1592,13 @@ Autocmd BufWritePost *.coffee silent make!
 " VimFilerを規定のファイラにする
 let g:vimfiler_as_default_explorer=1
 nnoremap <Leader>e :VimFilerExplorer<CR>
+
+" Like Textmate icons.
+let g:vimfiler_tree_leaf_icon = ' '
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▸'
+let g:vimfiler_file_icon = '-'
+let g:vimfiler_marked_file_icon = '*'
 " }}}
 
 " {{{ TaskList
