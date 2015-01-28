@@ -1,4 +1,8 @@
 " Startup {{{1 ====================
+set encoding=utf-8
+
+scriptencoding utf-8
+
 augroup MyAutoCmd
     autocmd!
 augroup END
@@ -381,7 +385,7 @@ endif
 if exists('&ambiwidth')
     set ambiwidth=double
 endif
-let mapleader = ","              " キーマップリーダー(defaultは'\')
+let g:mapleader = ","              " キーマップリーダー(defaultは'\')
 set scrolloff=2                  " スクロール時の余白確保
 set textwidth=0                  " 一行に長い文章を書いていても自動折り返しをしない
 set nowrap                       " 折り返ししない
@@ -571,6 +575,7 @@ set wildchar=<tab>         " コマンド補完を開始するキー
 set wildmode=list:longest,full     " リスト表示，最長マッチ
 set history=1024           " コマンド・検索パターンの履歴数
 set complete+=k            " 補完に辞書ファイル追加
+set pumheight=10           " 補完メニューの高さ
 
 " ファイル/ディレクトリ名補完時に無視するリスト
 set wildignore&
@@ -926,6 +931,9 @@ nmap yk y^
 " カーソルから行頭まで削除
 nnoremap <silent> <C-d> d0
 
+" カーソルから行末までヤンク
+nnoremap Y y$
+
 " ノーマルモードでEnterを押すと改行挿入
 " 大して使ってないし、QFで<CR>しても :.cc してくれないので削除
 "nnoremap <CR> o<ESC>
@@ -1015,7 +1023,6 @@ Autocmd InsertLeave *set nopaste
 " エンコーディング関連 Encoding ==================== {{{1
 
 " 内部エンコーディングをUTF-8にする
-set encoding=utf-8
 
 "開くファイルの文字コードを自動認識する
 "set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
