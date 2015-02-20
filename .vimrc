@@ -107,7 +107,7 @@ NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'choplin/unite-vim-hacks'
 NeoBundle 'osyo-manga/unite-fold'
 NeoBundle 'ujihisa/unite-colorscheme'
-"NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/neomru.vim'
 "}}}
 
 " ColorSchema{{{2
@@ -146,9 +146,6 @@ NeoBundle 'honza/vim-snippets'
 NeoBundle 'Shougo/vimfiler.vim', {
     \ 'depends': ['Shougo/unite.vim'],
     \ }
-
-" sonictemplate-vim
-NeoBundle 'mattn/sonictemplate-vim'
 
 " codic-vim
 NeoBundle 'koron/codic-vim'
@@ -296,6 +293,11 @@ NeoBundle 'hrsh7th/vim-versions.git'
 " project.vim
 " NeoBundle 'project.vim'
 
+" localrc.vim
+" http://d.hatena.ne.jp/thinca/20110108/1294427418
+" .local.vimrc を置いたフォルダ下のファイル編集時に.local.vimrcを適用する
+NeoBundle 'localrc.vim'
+
 " コンテキストによって自動的にファイルタイプが変わる
 " コンテキストが切り替わった時にWORDの範囲指定がおかしくなるのでちょっと保留
 "NeoBundle 'Shougo/context_filetype.vim'
@@ -304,7 +306,7 @@ NeoBundle 'hrsh7th/vim-versions.git'
 " http://d.hatena.ne.jp/osyo-manga/20130612/1371046408
 "NeoBundle 'osyo-manga/vim-precious'
 
-"NeoBundle 'osyo-manga/vim-anzu'
+" NeoBundle 'osyo-manga/vim-anzu'
 
 " threes
 NeoBundle 'thinca/vim-threes'
@@ -361,13 +363,23 @@ NeoBundleLazy 'vim-scripts/TaskList.vim', {
     \   'mappings': ['<Plug>TaskList'],
     \ }}
 
+" 行末スペースを削除する
+NeoBundleLazy 'bronson/vim-trailing-whitespace', {
+    \ 'autoload': {
+    \   'commands': ['FixWhitespace'],
+    \ }}
+
+" 検索をリッチにする
+NeoBundle 'haya14busa/incsearch.vim'
+NeoBundle 'haya14busa/vim-asterisk'
+
 " 自作プラグインのテスト
 "NeoBundle 'vim-keyatest'
 
-NeoBundle 'vim-keyatest', {
-\       'base' : '~/vimfiles/bundle',
-\       'type' : 'nosync',
-\   }
+" NeoBundle 'vim-keyatest', {
+" \       'base' : '~/vimfiles/bundle',
+" \       'type' : 'nosync',
+" \   }
 
 filetype plugin indent on
 
@@ -1268,16 +1280,25 @@ nmap <Leader>tl :CMiniBufExplorer<CR>:TrinityToggleTagList<CR>:TMiniBufExplorer<
 "------------------------------------
 " unite.vim {{{
 "------------------------------------
+try
+    let g:unite_source_rec_async_command='pt --nocolor --nogroup -g ""'
+    call unite#filters#matcher_default#use(['matcher_fuzzy'])
+catch
+endtry
+
 " The prefix key.
 nnoremap    [unite]   <Nop>
 nmap    <Space>u [unite]
 
 nnoremap [unite]u  :<C-u>Unite -no-split<Space>
 
+" 困ったときのunite再起動
+nnoremap <silent> [unite]r  <Plug>(unite_restart)
 " 全部乗せ
-nnoremap <silent> [unite]a  :<C-u>UniteWithCurrentDir -no-split -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> [unite]a  :<C-u>UniteWithCurrentDir -no-split -buffer-name=files buffer file_mru bookmark file_rec<CR>
 " ファイル一覧
-nnoremap <silent> [unite]f  :<C-u>Unite -no-split -buffer-name=files file<CR>
+nnoremap <silent> [unite]f  :<C-u>Unite -start-insert -no-split -buffer-name=files file_rec<CR>
+"nnoremap <silent> [unite]f  :<C-u>Unite -start-insert -buffer-name=files file_rec/async<CR>
 " バッファ一覧
 nnoremap <silent> [unite]b  :<C-u>Unite -no-split buffer_tab<CR>
 " 常用セット
@@ -1292,7 +1313,7 @@ nnoremap <silent> [unite]s  :<C-u>Unite snippet<CR>
 let g:unite_source_history_yank_enable = 1
 nnoremap <silent> [unite]y  :<C-u>Unite -silent history/yank<CR>
 " Line
-nnoremap <silent> [unite]/        :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
+nnoremap <silent> [unite]/  :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
 
 " unite plugin setting {{{
 " unite-outline
@@ -1611,6 +1632,37 @@ let g:vimfiler_marked_file_icon = '*'
 " {{{ TaskList
 nmap <Leader>k <Plug>TaskList
 " }}}
+
+" {{{ sonictemplate-vim
+let g:sonictemplate_vim_template_dir = [
+            \ '$HOME/dotfiles/template'
+            \]
+" }}}
+
+"{{{ incsearch.vim
+map / <Plug>(incsearch-forward)
+map ? <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+let g:incsearch#auto_nohlsearch = 1
+map n <Plug>(incsearch-nohl-n)
+map N <Plug>(incsearch-nohl-N)
+map * <Plug>(incsearch-nohl-*)
+map # <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+"}}}
+
+"{{{
+map *   <Plug>(asterisk-*)
+map #   <Plug>(asterisk-#)
+map g*  <Plug>(asterisk-g*)
+map g#  <Plug>(asterisk-g#)
+map z*  <Plug>(asterisk-z*)
+map gz* <Plug>(asterisk-gz*)
+map z#  <Plug>(asterisk-z#)
+map gz# <Plug>(asterisk-gz#)
+"}}}
 
 " }}}
 
