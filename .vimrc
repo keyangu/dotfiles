@@ -373,6 +373,8 @@ NeoBundleLazy 'bronson/vim-trailing-whitespace', {
 NeoBundle 'haya14busa/incsearch.vim'
 NeoBundle 'haya14busa/vim-asterisk'
 
+NeoBundle 'h1mesuke/vim-alignta'
+
 " 自作プラグインのテスト
 "NeoBundle 'vim-keyatest'
 
@@ -1295,7 +1297,7 @@ nnoremap [unite]u  :<C-u>Unite -no-split<Space>
 " 困ったときのunite再起動
 nnoremap <silent> [unite]r  <Plug>(unite_restart)
 " 全部乗せ
-nnoremap <silent> [unite]a  :<C-u>UniteWithCurrentDir -no-split -buffer-name=files buffer file_mru bookmark file_rec<CR>
+nnoremap <silent> [unite]A  :<C-u>UniteWithCurrentDir -no-split -buffer-name=files buffer file_mru bookmark file_rec<CR>
 " ファイル一覧
 nnoremap <silent> [unite]f  :<C-u>Unite -start-insert -no-split -buffer-name=files file_rec<CR>
 "nnoremap <silent> [unite]f  :<C-u>Unite -start-insert -buffer-name=files file_rec/async<CR>
@@ -1386,6 +1388,38 @@ let g:unite_source_file_mru_limit = 200
 " unite-plugins
 cnoremap UH Unite help<Enter>
 cnoremap UO Unite outline<Enter>
+
+let g:unite_source_alignta_preset_arguments = [
+            \ ["Align at '='", '=>\='],
+            \ ["Align at ':'", '01 :'],
+            \ ["Align at '|'", '|'   ],
+            \ ["Align at ')'", '0 )' ],
+            \ ["Align at ']'", '0 ]' ],
+            \ ["Align at '}'", '}'   ],
+            \]
+
+let s:comment_leadings = '^\s*\("\|#\|/\*\|//\|<!--\)'
+let g:unite_source_alignta_preset_options = [
+            \ ["Justify Left",      '<<' ],
+            \ ["Justify Center",    '||' ],
+            \ ["Justify Right",     '>>' ],
+            \ ["Justify None",      '==' ],
+            \ ["Shift Left",        '<-' ],
+            \ ["Shift Right",       '->' ],
+            \ ["Shift Left  [Tab]", '<--'],
+            \ ["Shift Right [Tab]", '-->'],
+            \ ["Margin 0:0",        '0'  ],
+            \ ["Margin 0:1",        '01' ],
+            \ ["Margin 1:0",        '10' ],
+            \ ["Margin 1:1",        '1'  ],
+            \
+            \ 'v/' . s:comment_leadings,
+            \ 'g/' . s:comment_leadings,
+            \]
+unlet s:comment_leadings
+
+nnoremap <silent> [unite]a :<C-u>Unite alignta:options<CR>
+xnoremap <silent> [unite]a :<C-u>Unite alignta:arguments<CR>
 
 " }}}
 
