@@ -9,7 +9,8 @@ if has('win32') || has('win64')
   " 文字コードを元に戻す
   set encoding=utf-8
 else
-  set guifont=Ricty\ for\ Powerline\ 10
+  "set guifont=Ricty\ for\ Powerline\ 10
+  set guifont=Inconsolata:h11:w6
   set guifontwide=Ricty\ 10
   set ambiwidth=double
 endif
