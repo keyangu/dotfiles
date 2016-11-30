@@ -29,7 +29,7 @@ endif
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Use neobundle standard recipes.
-NeoBundle 'Shougo/neobundle-vim-recipes'
+NeoBundle 'Shougo/neobundle-vim-scripts'
 
 " Recommended to install
 " After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
@@ -120,6 +120,8 @@ NeoBundle '29decibel/codeschool-vim-theme'
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'altercation/solarized'
 NeoBundle 'vim-scripts/newspaper.vim'
+"Bad Wolf
+NeoBundle 'sjl/badwolf'
 " }}}
 
 " ステータスラインをかっこ良くするvim-airline
@@ -181,13 +183,14 @@ NeoBundle 'tyru/open-browser.vim'
 " python
 "NeoBundle 'yuroyoro/vim-python'
 
-" syntax, error {{{
-" syntaxとかエラーとかを表示してくれるあたり
 " quickrun.vim : 編集中のファイルを簡単に実行できるプラグイン
 NeoBundle 'thinca/vim-quickrun'
 
+" syntax, error {{{
+" syntaxとかエラーとかを表示してくれるあたり
+
 " syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
-NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'scrooloose/syntastic'
 
 " エラーがある場所をhilight
 " NeoBundle 'errormarker.vim'
@@ -195,9 +198,9 @@ NeoBundle 'scrooloose/syntastic'
 
 " coffeescript {{{
 " syntax + 自動コンパイル
-NeoBundle 'kchmck/vim-coffee-script'
+" NeoBundle 'kchmck/vim-coffee-script'
 " js BDDツール
-"NeoBundle 'claco/jasmine.vim'
+" NeoBundle 'claco/jasmine.vim'
 " }}}
 
 " vimからGit操作する
@@ -226,7 +229,7 @@ NeoBundle 'vim-scripts/gtags.vim'
 
 " 最新のnetrwが使いづらすぎるので136に固定
 " VimFilerに慣れたら移行
-NeoBundle 'netrw.vim', '136'
+" NeoBundle 'netrw.vim', '136'
 
 " エンコード処理
 "NeoBundle 'banyan/recognize_charcode.vim'
@@ -250,7 +253,7 @@ NeoBundle 'thinca/vim-visualstar'
 "NeoBundle 'gregsexton/VimCalc'
 
 " 閲覧部分のフレームワーク化
-NeoBundle 'thinca/vim-ref'
+" NeoBundle 'thinca/vim-ref'
 
 " ファイルのテンプレートを選択できるplugin
 " NeoBundle 'qtmplsel.vim'
@@ -259,7 +262,7 @@ NeoBundle 'thinca/vim-ref'
 NeoBundle 'mattn/sonictemplate-vim'
 
 " vim-gocode
-NeoBundle 'Blackrush/vim-gocode'
+" NeoBundle 'Blackrush/vim-gocode'
 
 " webapi-vim
 NeoBundle 'mattn/webapi-vim'
@@ -269,10 +272,10 @@ NeoBundle 'mattn/gist-vim'
 
 " ProjectLocal.vim
 " http://blog.supermomonga.com/articles/vim/projectlocal-vim-released.html
-NeoBundle 'supermomonga/projectlocal.vim'
+" NeoBundle 'supermomonga/projectlocal.vim'
 
 " hateblo.vim Vimからはてなブログの編集ができる
-NeoBundle 'moznion/hateblo.vim'
+" NeoBundle 'moznion/hateblo.vim'
 
 " vim-metarw メタ情報を読み書きするための土台, hateblo.vimから使用
 " Windowsの場合、mattnさんのforkを使用
@@ -282,7 +285,7 @@ NeoBundle 'mattn/vim-metarw-gdrive'
 
 " はてなダイアリーの投稿、管理ができる
 " 個人的にはシンタックスのみ利用させてもらう
-NeoBundle 'https://github.com/motemen/hatena-vim'
+NeoBundle 'motemen/hatena-vim'
 
 " Excite翻訳で日<-->英翻訳する
 NeoBundle 'mattn/excitetranslate-vim'
@@ -309,29 +312,35 @@ NeoBundle 'localrc.vim'
 " NeoBundle 'osyo-manga/vim-anzu'
 
 " threes
-NeoBundle 'thinca/vim-threes'
+" NeoBundle 'thinca/vim-threes'
 
 " quickrunの拡張プラグイン
-NeoBundle 'osyo-manga/shabadou.vim'
+" NeoBundle 'osyo-manga/shabadou.vim'
 
-NeoBundle 'fuenor/qfixhowm'
+" NeoBundle 'fuenor/qfixhowm'
 
 " 任意にハイライトさせることができる
 NeoBundle 't9md/vim-quickhl'
 
 " リスタートする
-NeoBundle 'tyru/restart.vim'
+NeoBundleLazy 'tyru/restart.vim', '', 'same', {
+            \ 'gui' : 1,
+            \ 'autoload' : {
+            \   'commands' : 'Restart'
+            \ }}
 
 " 'f'による移動を強化する
 NeoBundle 'rhysd/clever-f.vim'
 
-NeoBundle 'rbtnn/vimconsole.vim'
+"NeoBundle 'rbtnn/vimconsole.vim'
 
 NeoBundle 'vim-jp/vital.vim'
 
 NeoBundle 's3rvac/vim-syntax-redminewiki'
 
-NeoBundle 'rhysd/vim-go-impl'
+" NeoBundle 'rhysd/vim-go-impl'
+
+NeoBundle 'fatih/vim-go'
 
 NeoBundleLazy 'majutsushi/tagbar' , {
     \ 'autoload': {
@@ -358,10 +367,10 @@ function! s:hooks.on_source(bundle)
     let g:jedi#goto_assignments_command = '<Leader>G'
 endfunction
 
-NeoBundleLazy 'vim-scripts/TaskList.vim', {
-    \ 'autoload': {
-    \   'mappings': ['<Plug>TaskList'],
-    \ }}
+"NeoBundleLazy 'vim-scripts/TaskList.vim', {
+"    \ 'autoload': {
+"    \   'mappings': ['<Plug>TaskList'],
+"    \ }}
 
 " 行末スペースを削除する
 NeoBundleLazy 'bronson/vim-trailing-whitespace', {
@@ -373,7 +382,14 @@ NeoBundleLazy 'bronson/vim-trailing-whitespace', {
 NeoBundle 'haya14busa/incsearch.vim'
 NeoBundle 'haya14busa/vim-asterisk'
 
+" テキスト整形
 NeoBundle 'h1mesuke/vim-alignta'
+
+" Markdownハイライト
+NeoBundleLazy 'rcmdnk/vim-markdown'
+
+" Elixirプラグイン
+NeoBundle 'elixir-lang/vim-elixir'
 
 " 自作プラグインのテスト
 "NeoBundle 'vim-keyatest'
@@ -486,6 +502,8 @@ endif
 au BufRead,BufNewFile SConstruct set filetype=python
 " coffeescript判定
 au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
+" .mdファイルはmodule2ではなく、Markdownとする
+Autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
 "Gtags(global)を使用するためのショートカット
 nnoremap <C-g> :Gtags
@@ -544,7 +562,6 @@ endif
 
 " カラー関連 Colors =================== {{{1
 " colorscheme
-colorscheme yuroyoro256
 
 "colorscheme codeschool
 "source ~/dotfiles/.vimrc.color
@@ -1314,21 +1331,15 @@ nnoremap <silent> [unite]s  :<C-u>Unite snippet<CR>
 " ヤンク履歴を有効にする
 let g:unite_source_history_yank_enable = 1
 nnoremap <silent> [unite]y  :<C-u>Unite -silent history/yank<CR>
-" Line
+" Line(ファイル内の行フィルタ)
 nnoremap <silent> [unite]/  :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
 
 " unite plugin setting {{{
 " unite-outline
 nnoremap <silent> [unite]o  :<C-u>Unite -silent outline -vertical -winwidth=40 -no-start-insert -buffer-name=outline<CR>
-" }}}
 
 " unite grep に pt(The Platinum Searcher)を使う
 nnoremap <silent> [unite]g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
-"if executable('pt')
-"  let g:unite_source_grep_command = 'pt'
-"  let g:unite_source_grep_default_ops = '--nogroup --nocolor'
-"  let g:unite_source_grep_recursive_opt = ''
-"endif
 
 " from basyura/unite-rails
 " nnoremap <silent> [unite]rm  :<C-u>Unite -no-split rails/model<CR>
@@ -1352,6 +1363,7 @@ elseif executable('pt')
   let g:unite_source_grep_command = 'pt'
   let g:unite_source_grep_default_opts = '--nogroup --nocolor'
   let g:unite_source_grep_recursive_opt = ''
+  let g:unite_source_grep_encoding = 'utf-8'
 elseif executable('ack-grep')
   " Use ack in unite grep source.
   let g:unite_source_grep_command = 'ack-grep'
@@ -1389,6 +1401,7 @@ let g:unite_source_file_mru_limit = 200
 cnoremap UH Unite help<Enter>
 cnoremap UO Unite outline<Enter>
 
+" unite-alignta
 let g:unite_source_alignta_preset_arguments = [
             \ ["Align at '='", '=>\='],
             \ ["Align at ':'", '01 :'],
@@ -1420,6 +1433,7 @@ unlet s:comment_leadings
 
 nnoremap <silent> [unite]a :<C-u>Unite alignta:options<CR>
 xnoremap <silent> [unite]a :<C-u>Unite alignta:arguments<CR>
+" unite plugin setting }}}
 
 " }}}
 
