@@ -20,7 +20,8 @@ if has('vim_starting')
         call neobundle#rc(expand('~/vimfiles/bundle/'))
     else
         set runtimepath+=~/.vim/bundle/neobundle.vim/
-        call neobundle#rc(expand('~/.vim/bundle/'))
+"        call neobundle#rc(expand('~/.vim/bundle/'))
+        call neobundle#begin(expand('~/.vim/bundle'))
     endif
 endif
 
@@ -68,7 +69,7 @@ NeoBundle 'kana/vim-textobj-syntax.git'
 " a/, i/, a?, i?
 NeoBundle 'kana/vim-textobj-lastpat.git'
 
-NeoBundle 'kana/textobj-line.git'
+"NeoBundle 'kana/textobj-line.git'
 
 " vim-textobj-indent : インデントされたものをtext-objectに
 " ai, ii, aI, iI
@@ -104,7 +105,7 @@ NeoBundle 'Shougo/unite-outline'
 "NeoBundle 'Sixeight/unite-grep'
 NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'choplin/unite-vim-hacks'
+"NeoBundle 'choplin/unite-vim-hacks'
 NeoBundle 'osyo-manga/unite-fold'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'Shougo/neomru.vim'
@@ -126,7 +127,7 @@ NeoBundle 'sjl/badwolf'
 
 " ステータスラインをかっこ良くするvim-airline
 " フォントの修正と変更が必要
-NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline'
 
 " undo履歴を追える (need python support)
 NeoBundle 'Gundo'
@@ -548,9 +549,9 @@ highlight CursorLine ctermbg=black guibg=black
 
 " Linuxのターミナルからvimを使う際のフォント設定
 if has('unix')
-  set guifont=Ricty\ for\ Powerline\ 10
-  set guifontwide=Ricty\ 10
-  set ambiwidth=double
+  "set guifont=Ricty\ for\ Powerline\ 10
+  "set guifontwide=Ricty\ 10
+  "set ambiwidth=double
 endif
 
 " コマンド実行中は再描画しない
@@ -562,6 +563,7 @@ endif
 
 " カラー関連 Colors =================== {{{1
 " colorscheme
+colorscheme molokai
 
 "colorscheme codeschool
 "source ~/dotfiles/.vimrc.color
