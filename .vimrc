@@ -20,8 +20,7 @@ if has('vim_starting')
         call neobundle#rc(expand('~/vimfiles/bundle/'))
     else
         set runtimepath+=~/.vim/bundle/neobundle.vim/
-"        call neobundle#rc(expand('~/.vim/bundle/'))
-        call neobundle#begin(expand('~/.vim/bundle'))
+        call neobundle#rc(expand('~/.vim/bundle/'))
     endif
 endif
 
@@ -69,7 +68,7 @@ NeoBundle 'kana/vim-textobj-syntax.git'
 " a/, i/, a?, i?
 NeoBundle 'kana/vim-textobj-lastpat.git'
 
-"NeoBundle 'kana/textobj-line.git'
+NeoBundle 'kana/textobj-line.git'
 
 " vim-textobj-indent : インデントされたものをtext-objectに
 " ai, ii, aI, iI
@@ -105,7 +104,7 @@ NeoBundle 'Shougo/unite-outline'
 "NeoBundle 'Sixeight/unite-grep'
 NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'tsukkee/unite-tag'
-"NeoBundle 'choplin/unite-vim-hacks'
+NeoBundle 'choplin/unite-vim-hacks'
 NeoBundle 'osyo-manga/unite-fold'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'Shougo/neomru.vim'
@@ -113,29 +112,29 @@ NeoBundle 'Shougo/neomru.vim'
 
 " ColorSchema{{{2
   " color schema 256
-NeoBundle 'desert256.vim'
-NeoBundle 'mrkn256.vim'
+"NeoBundle 'desert256.vim'
+"NeoBundle 'mrkn256.vim'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'yuroyoro/yuroyoro256.vim'
-NeoBundle '29decibel/codeschool-vim-theme'
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'altercation/solarized'
-NeoBundle 'vim-scripts/newspaper.vim'
+"NeoBundle '29decibel/codeschool-vim-theme'
+"NeoBundle 'nanotech/jellybeans.vim'
+"NeoBundle 'altercation/solarized'
+"NeoBundle 'vim-scripts/newspaper.vim'
 "Bad Wolf
 NeoBundle 'sjl/badwolf'
 " }}}
 
 " ステータスラインをかっこ良くするvim-airline
 " フォントの修正と変更が必要
-NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'bling/vim-airline'
 
 " undo履歴を追える (need python support)
 NeoBundle 'Gundo'
 
 " neocomplcache.vim : Vim的補完環境
 " NeoBundle 'Shougo/neocomplcache'
-" Vim7.3.885以上、+lua でビルドした Vim なら neocomplete のほうがいいらしいよ
-" LinuxのVimはソースから自分でビルドしたほうが新しい物を使えるよ
+" Vim7.3.885以上、+lua でビルドした Vim なら neocomplete のほうがいい
+" LinuxのVimはソースから自分でビルドしたほうが新しい物を使える
 NeoBundle 'Shougo/neocomplete.vim'
 
 " neosnippet
@@ -209,6 +208,9 @@ NeoBundle 'tpope/vim-fugitive'
 
 " 様々な移動を '[', ']' + キーで行う
 NeoBundle 'tpope/vim-unimpaired'
+
+" Markdownのプラグイン
+NeoBundle 'tpope/vim-markdown'
 
 " git-vim: Plugin files for calling git functions from inside Vim and Syntax files for git displays
 "NeoBundle 'motemen/git-vim'
@@ -300,7 +302,7 @@ NeoBundle 'hrsh7th/vim-versions.git'
 " localrc.vim
 " http://d.hatena.ne.jp/thinca/20110108/1294427418
 " .local.vimrc を置いたフォルダ下のファイル編集時に.local.vimrcを適用する
-NeoBundle 'localrc.vim'
+NeoBundle 'thinca/localrc.vim'
 
 " コンテキストによって自動的にファイルタイプが変わる
 " コンテキストが切り替わった時にWORDの範囲指定がおかしくなるのでちょっと保留
@@ -318,7 +320,8 @@ NeoBundle 'localrc.vim'
 " quickrunの拡張プラグイン
 " NeoBundle 'osyo-manga/shabadou.vim'
 
-" NeoBundle 'fuenor/qfixhowm'
+" qfixhowm 一人お手軽Wikiもどき
+NeoBundle 'fuenor/qfixhowm'
 
 " 任意にハイライトさせることができる
 NeoBundle 't9md/vim-quickhl'
@@ -337,17 +340,21 @@ NeoBundle 'rhysd/clever-f.vim'
 
 NeoBundle 'vim-jp/vital.vim'
 
+" Redmine Wiki の markdownハイライト
 NeoBundle 's3rvac/vim-syntax-redminewiki'
 
 " NeoBundle 'rhysd/vim-go-impl'
 
+" Golang 開発のもろもろ便利なツール群
 NeoBundle 'fatih/vim-go'
 
+" タグ内容を別窓でアウトラインっぽく表示するツール
 NeoBundleLazy 'majutsushi/tagbar' , {
     \ 'autoload': {
     \   'commands': ['TagbarToggle'],
     \ }}
 
+" python 開発のもろもろ便利なツール群
 NeoBundleLazy 'davidhalter/jedi-vim', {
     \ 'autoload': {
     \   'filetypes': ['python', 'python3', 'djangohtml'],
@@ -387,10 +394,12 @@ NeoBundle 'haya14busa/vim-asterisk'
 NeoBundle 'h1mesuke/vim-alignta'
 
 " Markdownハイライト
-NeoBundleLazy 'rcmdnk/vim-markdown'
+"NeoBundleLazy 'rcmdnk/vim-markdown'
 
 " Elixirプラグイン
-NeoBundle 'elixir-lang/vim-elixir'
+" NeoBundle 'elixir-lang/vim-elixir'
+
+NeoBundle 'thinca/vim-qfreplace'
 
 " 自作プラグインのテスト
 "NeoBundle 'vim-keyatest'
@@ -448,7 +457,7 @@ set ttymouse=xterm2
 
 set helpheight=12               " helpウィンドウを開いた時の高さ
 set helpfile=$VIMRUNTIME/doc/help.txt
-set grepprg=pt                  " grepにptを使用する
+set grepprg=pt                  " grepにptを使用する https://github.com/monochromegane/the_platinum_searcher
 set undodir=~/vimfiles/undo     " undoファイルの作成先
 
 set undodir=~/vimfiles/undodir
@@ -549,9 +558,9 @@ highlight CursorLine ctermbg=black guibg=black
 
 " Linuxのターミナルからvimを使う際のフォント設定
 if has('unix')
-  "set guifont=Ricty\ for\ Powerline\ 10
-  "set guifontwide=Ricty\ 10
-  "set ambiwidth=double
+  set guifont=Ricty\ for\ Powerline\ 10
+  set guifontwide=Ricty\ 10
+  set ambiwidth=double
 endif
 
 " コマンド実行中は再描画しない
@@ -563,7 +572,6 @@ endif
 
 " カラー関連 Colors =================== {{{1
 " colorscheme
-colorscheme molokai
 
 "colorscheme codeschool
 "source ~/dotfiles/.vimrc.color
@@ -586,9 +594,9 @@ endif
 
 " 使用しているターミナルが"xterm-color"なのに上のifelseがちゃんと
 " 動いていないので、強制的に256色表示
-set t_Co=256
-set t_Sf=[3%dm
-set t_Sb=[4%dm
+" set t_Co=256
+" set t_Sf=[3%dm
+" set t_Sb=[4%dm
 
 " ハイライト on
 syntax enable
@@ -1720,7 +1728,7 @@ map gz# <Plug>(asterisk-gz#)
 if has('win32') || has('win64')
 
 	" メモの保存先
-	let howm_dir              = 'W:/howm'
+	let howm_dir              = '~/data/howm'
 	let howm_filename         = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
 
 	" 休日定義ファイル
@@ -1732,6 +1740,9 @@ if has('win32') || has('win64')
 
 	" textwidthの再設定
 	au Filetype qfix_memo setlocal textwidth=0
+
+    command! HowmPublic let howm_dir = '~/DropboxHowm'
+    command! HowmPrivate let howm_dir = '~/data/howm'
 
 elseif has('unix')
 
@@ -1892,6 +1903,44 @@ function! OpenModifiableQF()
 endfunction
 
 Autocmd QuickfixCmdPost vimgrep call OpenModifiableQF()
+
+function! s:get_syn_id(transparent)
+  let synid = synID(line("."), col("."), 1)
+  if a:transparent
+    return synIDtrans(synid)
+  else
+    return synid
+  endif
+endfunction
+function! s:get_syn_attr(synid)
+  let name = synIDattr(a:synid, "name")
+  let ctermfg = synIDattr(a:synid, "fg", "cterm")
+  let ctermbg = synIDattr(a:synid, "bg", "cterm")
+  let guifg = synIDattr(a:synid, "fg", "gui")
+  let guibg = synIDattr(a:synid, "bg", "gui")
+  return {
+        \ "name": name,
+        \ "ctermfg": ctermfg,
+        \ "ctermbg": ctermbg,
+        \ "guifg": guifg,
+        \ "guibg": guibg}
+endfunction
+function! s:get_syn_info()
+  let baseSyn = s:get_syn_attr(s:get_syn_id(0))
+  echo "name: " . baseSyn.name .
+        \ " ctermfg: " . baseSyn.ctermfg .
+        \ " ctermbg: " . baseSyn.ctermbg .
+        \ " guifg: " . baseSyn.guifg .
+        \ " guibg: " . baseSyn.guibg
+  let linkedSyn = s:get_syn_attr(s:get_syn_id(1))
+  echo "link to"
+  echo "name: " . linkedSyn.name .
+        \ " ctermfg: " . linkedSyn.ctermfg .
+        \ " ctermbg: " . linkedSyn.ctermbg .
+        \ " guifg: " . linkedSyn.guifg .
+        \ " guibg: " . linkedSyn.guibg
+endfunction
+command! SyntaxInfo call s:get_syn_info()
 " }}}
 
 " その他 Misc ==================== {{{1

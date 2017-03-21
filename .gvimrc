@@ -9,8 +9,7 @@ if has('win32') || has('win64')
   " 文字コードを元に戻す
   set encoding=utf-8
 else
-  "set guifont=Ricty\ for\ Powerline\ 10
-  set guifont=Inconsolata:h11:w6
+  set guifont=Ricty\ for\ Powerline\ 10
   set guifontwide=Ricty\ 10
   set ambiwidth=double
 endif
@@ -26,7 +25,8 @@ source $VIMRUNTIME/menu.vim
 "-------------------------------------------------------------------------------
 
 " colorscheme
-colorscheme yuroyoro256
+"colorscheme yuroyoro256
+colorscheme badwolf
 "colorscheme codeschool
 
 if &term =~ "xterm-256color" || "screen-256color"
